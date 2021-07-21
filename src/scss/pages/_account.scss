@@ -1,0 +1,20 @@
+.account {
+    @extend .main-layout;
+    padding-top: 6rem;
+
+    &__orders {
+        &-table {
+            td, th {
+                padding-top: .8rem;
+                padding-bottom: .8rem;
+            }
+        }
+    }
+
+    &-info {
+        & > h5 { 
+            border-bottom: 1px solid $gray-primary;
+            line-height: 2rem; 
+        }
+    }
+}
