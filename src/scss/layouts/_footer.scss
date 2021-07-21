@@ -1,0 +1,24 @@
+.footer {
+    &__nav-item {
+        @include transitionPreviousProps(
+            $transition: .2s,
+            $backgroundColor: black,
+            $color: dimgray,
+            $opacity: 1,
+            $listStyle: none
+        );
+
+        &:hover {
+            @include transitionDoneProps(
+                $backgroundColor: black,
+                $color: olivedrab,
+                $transform: translateX(1rem),
+                $listStyle: square
+            );
+        }
+
+        a {
+            color: inherit;
+        }
+    }
+}

@@ -1,1 +1,48 @@
-h1 This is the footer
+-
+    const footerNavItems = [
+        {field: 'LIÊN HỆ VỚI CHÚNG TÔI', items: [
+            {icon: 'marker', content: 'Tầng 4, Tòa nhà Hanoi Group  Số 442 Đội Cấn, P. Cống Vị, Q. Ba Đình, Hà Nội'},
+            {icon: 'phone', content: '(04) 6674 2332'},
+            {icon: 'fax', content: '(04) 3786 8904'},
+            {icon: 'phone', content: '(08) 6680 9686'},
+            {icon: 'mail', content: ' Support@bizweb.vn'},
+        ]},
+        {field: 'CHUYỂN HÀNG', items: ['Mua sắm trực tuyến', 'Đến từ chúng tôi gửi đến', 'Chính sách vận chuyển', 'Vận chuyển thông tin']},
+        {field: 'HỖ TRỢ', items: ['Câu chuyện của chúng ta', 'Thanh toán an toàn', 'Tùy chọn vận chuyển', 'Chính sách vận chuyển']},
+        {field: 'THÔNG TIN', items: ['Về chúng tôi', 'Điều khoản & điều kiện', 'Chính sách riêng tư', 'Vận chuyển thông tin']},
+        {field: 'MY ACCOUNT', items: ['Xem giỏ hàng', 'Sản phẩm yêu thích', 'Kiểm tra', 'Theo dõi đơn đặt hàng của tôi']}
+    ]
+-   const footerAssetDir = '../../../assets'
+
+include ../mixins/footer/contact-us-item
+
+footer.footer.pt-5.d-flex.justify-content-center.bg-black.text-white
+    .container.mt-4 
+        //- FOOTER NAVBAR
+        .footer__nav.row.mb-5.ps-2.pe-2
+            //- CONTACT US NAV ITEM
+            .footer__contact-us.col-12.col-lg-4.ps-0 
+                h5.footer__nav-header.pb-3.fw-light LIÊN HỆ VỚI CHÚNG TÔI
+                ul.ps-0.fs-6  
+                    li.pb-2.text-dimgray
+                        +contactUsNavItem('marker', 'Tầng 4, Tòa nhà Hanoi Group  Số 442 Đội Cấn, P. Cống Vị, Q. Ba Đình, Hà Nội')
+                    li.pb-2.text-dimgray  
+                        +contactUsNavItem('phone', '(04) 6674 2332 -')
+                        +contactUsNavItem('fax', '(04) 6674 2332')
+                    li.pb-2.text-dimgray  
+                        +contactUsNavItem('phone', '(04) 6674 2332')
+                        img.icon.icon--nav.me-1.ms-2(src=`${footerAssetDir}/icons/mail.svg`, alt='Mail')
+                        span   
+                            i.text-olivedrab Support@bizweb.vn
+            //- OTHER NAV ITEMS
+            each field in footerNavItems.slice(1) 
+                .footer__nav-col.col-12.col-sm-6.col-md-3.col-lg-2.ps-0 
+                    ul.ps-0 
+                        h5.pb-3.fw-light.footer__nav-header= field.field
+                        each item in field.items 
+                            li.footer__nav-item.pb-3.fs-6
+                                a(href='#')= item
+        //- FOOTER ADDITIONAL INFO
+        .footer__additional.mb-4.d-flex.justify-content-between.align-items-start.align-items-md-center.flex-column.flex-md-row     
+            span.pb-2.pb-md-0.text-dimgray.fs-7 © Copyright 2008-2014 DKT Technology JSC
+            img(src=`${footerAssetDir}/icons/payment-methods.svg`, alt='Payment method')
