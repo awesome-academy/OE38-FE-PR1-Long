@@ -1,0 +1,20 @@
+.sign-up {
+    padding-top: 6rem;
+
+    .container {
+        @extend .main-layout;
+        
+        .form {
+            background-color: $gray-light;
+            box-shadow: 0px 0px 5px $gray-primary;
+            
+            .form-fields__input {
+                margin-top: -1.5rem;
+
+                &-name {
+                    &:first-child {margin-top: 0rem;}
+                }
+            }
+        }
+    }
+}

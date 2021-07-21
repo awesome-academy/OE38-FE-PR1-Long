@@ -1,4 +1,120 @@
 extends ../layouts/default-layout
 
+block variables
+    -   
+        const inputFields = [
+            {
+                legend: 'THÔNG TIN CÁ NHÂN',
+                inputs: [
+                    {
+                        id: 'first-name',
+                        type: 'input', 
+                        layout: 'column', 
+                        label: 'Tên trước *', 
+                        validation: {type: 'text', required: true}, 
+                        help: "Ví dụ: Nguyễn Văn", 
+                        invalid: false
+                    },
+                    {
+                        id: 'last-name', 
+                        type: 'input', 
+                        layout: 'column',  
+                        label: 'Tên sau *', 
+                        validation: {type: 'text', required: true}, 
+                        help: "Ví dụ: Anh", 
+                        invalid: false
+                    },
+                    {
+                        id: 'email', 
+                        type: 'input', 
+                        layout: 'column', 
+                        label: 'Email *', 
+                        validation: {type: 'email', required: true}, 
+                        help: "Ví dụ: nguyenvananh@gmail.com", 
+                        invalid: true
+                    },
+                    {
+                        id: 'personal-password', 
+                        layout: 'column', 
+                        type: 'input', 
+                        label: 'Password *', 
+                        validation: {type: 'password', required: true, maxLength: 24, minLength: 6}, 
+                        help: "Từ 6-24 ký tự, không chứa ký tự đặc biệt", 
+                        invalid: true
+                    },
+                    {
+                        id: 'address', 
+                        layout: 'column', 
+                        type: 'input', 
+                        label: 'Địa chỉ', 
+                        validation: {type: 'text', required: false}, 
+                        help: "Ví dụ: Nhà A, phố B, phường C, quận D, thành phố E",
+                        invalid: true
+                    },
+                    {
+                        id: 'phone', 
+                        layout: 'column',
+                        type: 'input', 
+                        label: 'Số điện thoại', 
+                        validation: {type: 'tel', required: false, pattern:"[0-9]{11}"},
+                        help: "11 chữ số, ví dụ: 01234578999", 
+                        invalid: false
+                    },
+                    {
+                        id: 'subscribe', 
+                        type: 'checkbox', 
+                        label: "Đăng ký nhận bản tin", 
+                        validation: {type: 'checkbox', name: 'subscribe', value: 'true'}
+                    }    
+                ]
+            },
+            {
+                legend: 'THÔNG TIN ĐĂNG NHẬP',
+                inputs: [
+                    {
+                        id: 'personal-password', 
+                        type: 'input', layout: 'column', 
+                        label: 'Mật khẩu *', 
+                        validation: {type: 'password', required: true, maxLength: 24, minLength: 6}, 
+                        help: "Từ 6-24 ký tự, không chứa ký tự đặc biệt", 
+                        invalid: false
+                    },
+                    {
+                        id: 'personal-password', 
+                        type: 'input', 
+                        layout: 'column', 
+                        label: 'Xác nhận mật khẩu *',
+                        validation: {type: 'password', required: true, maxLength: 24, minLength: 6},
+                        invalid: false
+                    }
+                ]
+            }
+        ]
+
+include ../mixins/form-button
+include ../mixins/input
+include ../mixins/page-directory
+
 block main
-    h1 This is the sign up page
+    main.sign-up
+        .container.mt-3  
+            //- PAGE DIRECTORY 
+            section.sign-up__page-directory
+                +page-directory([
+                    {name: 'Home', to: HOMEPAGE},
+                    {name: 'Tài khoản', to: ACCOUNT}
+                ], 'olivedrab')
+            section.sign-up__form
+                //- SIGN UP FORM
+                h3.pt-3.pb-3.fw-normal ĐĂNG KÝ 
+                form.form.pb-3.mb-5(action="")
+                    //- PERSONAL INFO
+                    fieldset.form-fields.ms-4.me-4 
+                        each inputField in inputFields
+                            +inputField(inputField)
+                    //- FORM NAVIGATION
+                    .form-nav.ms-4.me-4.mt-3.d-flex.justify-content-between
+                        button.btn.btn-dark.pe-4.ps-4.rounded-0.fs-7(type='submit') GỬI
+                        a.btn.btn-dark.d-flex.align-items.center.gap-2.pe-4.ps-4.rounded-0.fs-7(href='#')    
+                            img.icon(src=`${pagesAssetSrc}/icons/back.svg`, alt='Back') 
+                            span QUAY LẠI
