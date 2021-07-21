@@ -71,5 +71,14 @@
                 span { font-family: $font-roboto; }
             }
         }
+        // PRODUCT
+        &-products {
+            .products-list {
+                display: none;
+            }
+            .col-12:last-child {
+                .product__img-ctn {border: 0;}
+            }
+        }
     }
 }
