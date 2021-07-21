@@ -1,16 +1,31 @@
 extends ../layouts/default-layout
 
 block variables
-    -   const pagesAssetSrc = '../../assets/'
+    -   const pagesAssetSrc = '../../assets'
     -   
         const promotionShortItems = [
             {icon: 'plane', content: 'Miễn phí vận chuyển trên toàn quốc'},
             {icon: 'gift', content: 'Nhận ngay quà tặng trị giá 350.000đ'},
             {icon: 'black-star', content: 'Giảm 30% cho đơn hàng trên 5.000.000đ'}
         ]
+    - 
+        const productBestsellerNavItems = ['Mỹ phẩm', '.', 'Chăm sóc da', '.', 'Dành cho tóc', '.', 'Nước hoa', '.', 'Trang sức', '.', 'Quà tặng']
+    -   
+        const socialMeds = ['facebook', 'twitter', 'instagram', 'google', 'pinterest', 'linkedin']
+    -   
+        const productTags = ['Đồng hồ', 'Túi', 'Phụ kiện', 'Đồng hồ', 'Túi', 'Giày', 'Sandal', 'Áo sơ mi', 'Nước hoa', 'Giày', 'Sandal', 'Trẻ em', 'Thời trang nữ', 'Trẻ em', 'Thời trang nữ'] 
 
 block includes 
+    include ../constants/products
+    include ../constants/blogs
     include ../mixins/homepage/promotion-long-text-item
+    include ../mixins/product
+    include ../mixins/homepage/product-carousel
+    include ../mixins/homepage/social-media
+    include ../mixins/homepage/bestseller-nav-item
+    include ../mixins/homepage/company-intro-header
+    include ../mixins/blog
+    include ../mixins/tag
 
 block nav
     nav.navbar.navbar--homepage.navbar-expand-lg.p-0.navbar-light
@@ -97,3 +112,63 @@ block main
                     img.icon.icon--nav(src=`${pagesAssetSrc}/icons/products-dots.svg`, alt='dot')
                 //- ADDITIONAL BACKGROUND
                 img.products__intro-flower.col-4.position-absolute.end-0(src=`${pagesAssetSrc}/images/products-flower.svg`, alt='Background') 
+            //- PRODUCTS BESTSELLER 
+            .products__bestseller.mt-5.pt-5.ms-0.me-0 
+                //- PRODUCTS BESTSELLER NAV
+                .products__bestseller-nav.w-75.m-auto
+                    //- PRODUCTS BESTSELLER NAV UPPER
+                    .products__bestseller-nav--upper.row.flex-column.flex-sm-row.align-items-center.justify-content-center
+                        .col.col-sm-3.col-md-2.text-sm-end 
+                            span Sản phẩm mới
+                        .col.col-sm-6.col-md-4.text-sm-center.text-olivedrab 
+                            span.fs-3.flex-grow-1 Sản phẩm bán chạy
+                        .col.col-sm-3.col-md-2.text-sm-start 
+                            span Sản phẩm đặc biệt
+                    div.w-100.d-flex.justify-content-center.mt-3.mb-3
+                        img.line-breaker.m-auto(src=`${pagesAssetSrc}/icons/breaker-long.svg`)
+                    //- PRODUCTS BESTSELLER NAV BELOW
+                    ul.products__bestseller-nav--below.row.d-flex.justify-content-between.m-auto.mb-5.ps-0
+                        each item in productBestsellerNavItems
+                            +productsBestsellerNavItem(item)
+                //- PRODUCTS BESTSELLER CAROUSEL 
+                .products__bestseller-carousel
+                    +productCarousel('product-carousel')
+
+        //- ABOUT US 
+        section.container-fluid.company-intro.pd-0.pb-md-5.mb-5
+            //- COMPANY SOCIAL MEDS
+            .company-intro__social-meds.row 
+                each media in socialMeds 
+                    +socialMedia(media)
+            //- COMPANY OTHERS
+            .company-intro__others.row.mt-5.pt-2 
+                //- COMPANY INTRO - ABOUT US
+                .company-intro__about-us.col-12.col-sm-6.col-xxl-4.mb-5.mb-md-0
+                    +companyIntroHeader('VỀ CHÚNG TÔI')
+                    .company-intro__about-us__logo
+                        a.navbar-brand.text-black(href="#")    
+                            span.ps-1.pe-2.me-1.rounded-circle.text-white.fs-1 M
+                            span    andala
+                    h5.fs-7 Giới thiệu chung về mỹ phẩm handmade Mandala 
+                    p.fs-7.mb-0 Hi, chào các nàng ... sau khá nhiều lời hứa hão thì hôm nay tớ quay lại hâm nóng cái Blog này vào một ngày đầu hè nóng oi bức, khi mà dân tình xô nhau đi tắm Free để giải nhiệt. Hi, chào các nàng ... sau khá nhiều lời hứa hão thì hôm nay tớ quay lại hâm nóng cái Blog này vào một ngày đầu hè nóng oi bức, khi mà dân tình xô nhau đi tắm Free để giải nhiệt.sau khá nhiều lời hứa hão thì hôm nay tớ quay lại hâm nóng cái Blog này vào một ngày đầu hè nóng oi bức, khi mà dân tình xô nhau đi tắm Free để giải nhiệt.  
+                    a.fs-7.text-lightslategray(href="#") Xem thêm
+                //- COMPANY INTRO - BLOG
+                .company-intro__blog.col-12.col-sm-6.col-xxl-4.mb-5.mb-md-0
+                    +companyIntroHeader('BLOG')
+                    .pt-3
+                        +blog-card-and-details(blogs[0], 'card')
+                //- COMPANY INTRO - EMAIL + TAGS
+                .col-12.col-md-12.col-xxl-4.row.m-0.mb-5.mb-md-0.mt-0.mt-sm-2.mt-md-4.mt-xxl-0
+                    //- COMPANY INTRO - EMAIL
+                    .company-intro__email.col-12.col-sm-6.col-xxl-12.mb-5.mb-md-0
+                        +companyIntroHeader('GỬI EMAIL CHO CHÚNG TÔI')
+                        form.d-flex.flex-column.align-items-center.pt-3.gap-2
+                            input.form-control#input-email(type="email"  aria-describedby="emailHelp",  placeholder='Email của bạn')
+                            label.fs-7(for="input-email") Gửi email để nhận những ưu đãi mới nhất
+                            button.btn.btn-dark.fs-7.pe-4.ps-4.rounded-0(type="submit") Gửi
+                    //- COMPANY INTRO - TAGS
+                    .company-intro__product-tags.col-12.col-sm-6.col-xxl-12.mt-0.mt-xxl-3
+                        +companyIntroHeader('TAG SẢN PHẨM')
+                        .tags-ctn.pt-3
+                            each tag in productTags
+                                +tag(tag)

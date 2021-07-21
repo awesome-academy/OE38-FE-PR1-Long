@@ -1,0 +1,27 @@
+.blog {
+    .card-footer {
+        a, 
+        .blog__author {
+            transition: .2s;
+            &:hover {
+                color: black!important;
+            }
+        }
+    }
+    &--card {
+        .blog__desc {margin-top: 0;}
+        .blog__author,
+        .card-footer {font-size: 12px;}
+    }
+    &--details {
+        .blog__title {margin-top: 1rem;}
+        
+        .blog__desc {margin: 1rem 0;}
+
+        .blog__author, 
+        .card-footer {
+            font-size: 14px;
+            margin: .5rem 0;
+        }
+    }
+}

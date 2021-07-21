@@ -1,0 +1,4 @@
+mixin socialMedia(media)
+    .social-med.col.align-items-center.justify-content-center
+        img.icon.icon--med.me-2(src=`${pagesAssetSrc}/icons/${media}.svg`, alt=`${media}`)
+        span.fs-8.fw-bold #{media.toUpperCase()}

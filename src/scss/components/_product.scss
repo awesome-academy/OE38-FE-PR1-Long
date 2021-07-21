@@ -1,0 +1,67 @@
+.product {
+    border-radius: 5px;
+
+    &__img-ctn {
+        height: 12rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    &__price { font-family: 'Lobster', cursive; }
+
+    &__btn {
+        border: 2px solid lightgray;
+        border-radius: 10px;
+        font-weight: bold;
+        line-height: 24px;
+        outline: none;
+        
+        &:focus {
+            outline: none!important;
+            box-shadow: none;
+        }
+
+        &:hover {
+            background-color: olivedrab;
+            color: white;
+            border-color: olivedrab;
+        }
+    }
+
+    &__img { max-height: 100%; }
+
+    hr { width: 2rem; }
+
+    .card-footer {
+        @include transitionPreviousProps(
+            $maxHeight: 0,
+            $opacity: 0,
+            $transform: translateY(-.5rem),
+            $transition: .2s,
+            $zIndex: -1
+        )
+    }
+    
+    &:hover {
+        .card-footer {
+            @include transitionDoneProps(
+                $maxHeight: 20rem,
+                $transform: translateY(0),
+                $zIndex: 1
+            )
+        }
+    }
+
+    &--grid {
+        @include mediaQueryMin('extra-small') {
+            max-height: 23rem;
+            .card-footer { margin-top: .5rem; }
+        }
+        @include mediaQueryMin('medium') {
+            max-height: 25rem;
+            .card-footer { margin-top: 0rem; }
+        }
+        .card-footer { justify-content: center; }
+    }
+}

@@ -1,0 +1,16 @@
+.tags-ctn {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .2rem;
+    .tag {
+        flex-shrink: 0;
+        padding: .2rem .5rem;
+        border: 2px solid lightgray;
+        color: black;
+    
+        &:hover {
+            background-color: olivedrab;
+            color: white;
+        }
+    }
+}
