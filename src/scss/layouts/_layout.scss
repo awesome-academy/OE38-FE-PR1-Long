@@ -1,0 +1,10 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-layout {
+    @include mediaQueryMin(small) { width: 80%; }
+    @include mediaQueryMin(large) {width: 63%; }
+    margin: auto;
+}

@@ -1,1 +1,32 @@
-h1 This is the navbar
+- 
+    const navLeftItems = [
+        {type: 'normal', name: 'TRANG CHỦ', to: '#'},
+        {type: 'normal', name: 'GIỚI THIỆU', to: '#'},
+        {type: 'normal', name: 'SẢN PHẨM', to: '#'},
+        {type: 'dropdown', spec: 'categories', name: 'SẢN PHẨM', to: '#'},
+        {type: 'normal', name: 'TIN TỨC', to: '#'},
+        {type: 'normal', name: 'BẢN ĐỒ', to: '#'},
+        {type: 'normal', name: 'LIÊN HỆ', to: '#'}
+    ]
+
+-
+    const productCategories = [
+        {category: 'DƯỠNG DA', subcategories: ['Áo khoác', 'Bộ áo liền quần', 'Dresses', 'Quần / Váy', 'Quần Short', 'Quần jean', 'Đồ đan', 'Áo nỉ']},
+        {category: 'NƯỚC HOA', subcategories: ['Áo cánh / Áo sơ mi', 'Túi xách $ Balô', 'Khăn quàng cổ và Floulards', 'Dệt kim Hats & Gloves', 'Vớ & Socks', 'Jewerly', 'Bị bảo vệ', 'Giày']},
+        {category: 'TRANG SỨC', subcategories: ['Áo cánh / Áo sơ mi', 'Túi xách $ Balô', 'Khăn quàng cổ và Floulards', 'Dệt kim Hats & Gloves', 'Vớ & Socks', 'Jewerly', 'Bị bảo vệ', 'Giày']}
+    ]
+-   const navAssetsDir = '../../../assets/'
+-   
+    const cartProducts = [
+        {productImg: 'nav-cart-product', productName: 'Áo sơ mi Nam', productPrice: 120000  },
+        {productImg: 'nav-cart-product', productName: 'Áo sơ mi Nam', productPrice: 120000  }
+    ]
+
+.container.navbar-container.align-items-stretch.justify-content-between
+    a.navbar-brand.order-0(href="#")    
+        span.ps-1.pe-2.me-1.rounded-circle.text-white.fs-1 M
+        span    andala
+    include ../mixins/navbar/navLeft
+    +navLeft
+    include ../mixins/navbar/navRight
+    +navRight
