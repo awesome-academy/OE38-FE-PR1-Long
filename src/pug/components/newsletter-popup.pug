@@ -1,0 +1,18 @@
+//- TRIGGER BUTTON
+button.btn.btn-dark.d-none.d-md-block#newsletter-toggler(type="button" data-bs-toggle="modal" data-bs-target="#newsletter") Newsletter
+
+//- NEWSLETTER
+.modal.fade#newsletter(tabindex="-1" aria-labelledby="newsletterLabel" aria-hidden="true")
+    .modal-dialog.d-flex.justify-content-center
+        .modal-content.w-max
+            .modal-header.d-flex.justify-content-center.border-0
+                a.btn-lg.m-0.btn-white(type="button" data-bs-dismiss="modal" aria-label="Close")
+                    img(src=`${pagesAssetSrc}/icons/close-white.svg`, alt="Close button")
+            .modal-body
+                img(src=`${pagesAssetSrc}/images/newsletter.svg`, alt="Newsletter background")
+                .content.text-center 
+                    h3 GỬI EMAIL 
+                    p.fs-7.m-0 Hãy gửi email cua bạn liên hệ với chúng tôi để đc tư vấn tốt nhất. 
+                    p.fs-7 Sự hài lòng cua bạn là thành công của chúng tôi.
+                    input(type="text", placeholder='Email của bạn...')
+                    a(href='#') GỬI EMAIL
