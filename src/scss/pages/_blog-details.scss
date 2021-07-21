@@ -1,0 +1,23 @@
+.blog-details {
+    padding-top: 6rem;
+
+    &__main,
+    &__directory {
+        @extend .main-layout;
+        padding: 0 12px;
+    }
+
+    hr { background-color: $gray-primary; }
+    
+    &__directory { padding: 0 1.5rem; }
+
+    &__content { 
+        @include mediaQueryMin('large') { margin-top: 4.5rem; }
+    }
+
+    &__tags {
+        overflow-x: auto;
+
+        .tag { color: black; }
+    }
+}
