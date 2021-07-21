@@ -1,0 +1,24 @@
+.page-directory {
+    margin-bottom: 1.5rem;
+    @extend .fs-7;
+    hr {
+        background-color: $gray-primary;
+    }
+
+    &__path {
+        color: $gray-dim;
+        &:hover { color: black; }
+
+        &::after {
+            content: '>';
+            font-weight: bold;
+        }
+    }
+    
+    &__active {
+        &--olivedrab {
+            color: $green-primary;
+            &:hover { color: $green-primary; }
+        }
+    }
+}

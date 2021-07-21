@@ -1,0 +1,16 @@
+-   let n = 1
+
+mixin pagination(noPages)
+    .pagination.d-flex.justify-content-between.align-items-center   
+        //- LAYOUT
+        .pagination__layout.d-flex.gap-2          
+            button.layout-toggler 
+                img(src=`${pagesAssetSrc}/icons/products-grid.svg`, alt="Grid")
+                img(src=`${pagesAssetSrc}/icons/products-list.svg`, alt="List")
+        //- PAGES
+        .pagination__pages.d-flex.align-items-center.gap-2 
+            img.icon(src=`${pagesAssetSrc}/icons/triangle-gray-left.svg`, alt="Previous page")
+            each n in Array.from({length: noPages}, (_, i) => i + 1)
+                span.pagination__pages-number.fw-normal= n++
+                
+            img.icon(src=`${pagesAssetSrc}/icons/triangle-gray-right.svg`, alt="Next page")

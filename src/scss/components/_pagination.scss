@@ -1,0 +1,36 @@
+.pagination {
+    &:focus-within {
+        & ~ .products-grid { display: none; }
+        & ~ .products-list { display: block; }
+    }
+    .layout-toggler {
+        width: 6rem;
+        display: flex;
+        gap: 2rem;
+        background-color: transparent;
+        border: none;
+    }
+
+    img {cursor: pointer;}
+    &__pages {
+        align-items: center;
+        &-number {
+            width: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            transition: .15s ease-in-out;
+            cursor: pointer;
+            &:hover {
+                background-color: black;
+                color: white;
+            }
+        }
+        .icon {
+            width: .7rem;
+            cursor: pointer;
+            &:hover {
+                filter: invert(0%) sepia(9%) saturate(978%) hue-rotate(179deg) brightness(68%) contrast(80%);
+            }
+        }
+    }
+}

@@ -34,4 +34,4 @@ mixin categoriesDropdown
                     hr
                     each subcategory in productCategory.subcategories
                         li.category__subcategory
-                            a.dropdown-item.dropdown-item--category.ps-0.fs-7(href="#")= subcategory
+                            a.dropdown-item.dropdown-item--category.ps-0.fs-7(href=`products.html?subcate=${subcategory}`)= subcategory
