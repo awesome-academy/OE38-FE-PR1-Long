@@ -20,4 +20,16 @@
 
         .tag { color: black; }
     }
+
+    &__contribution {
+        &-form {
+            legend {font-size: 1rem;}
+
+            .form-fields__input {
+                margin: 1rem 0;
+
+                &-name {padding-left: 0;}
+            }
+        }
+    }   
 }
