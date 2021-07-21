@@ -1,0 +1,6 @@
+mixin suggestionField(header, products)
+    .long-details__suggestions-field
+        h2.fs-5= header
+        hr
+        each product in products
+            +product-recommend(productDetails)

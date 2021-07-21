@@ -35,6 +35,8 @@ block includes
     include ../mixins/page-directory
     include ../mixins/product
     include ../mixins/product-details/product-images-carousel
+    include ../mixins/product-details/suggestion-field
+    include ../mixins/product-details/product-spec-content
             
 block main
     main.product-details.pb-3.mb-5 
@@ -55,3 +57,22 @@ block main
                 //- PRODUCT CARD
                 .short-details__card.col-11
                     +product-details(productDetails)
+            //- PRODUCT LONG DETAILS
+            .long-details.row.mt-5 
+                //- PRODUCT SPECS
+                .long-details__specs.col-12.col-lg-8 
+                    //- SPECS HEADER
+                    .long-details__specs-header.d-flex.gap-4.mb-0
+                        h2#features.fs-5 ĐẶC ĐIỂM NỔI BẬT
+                        h2#specs.fs-5 THÔNG TIN SẢN PHẨM
+                        h2#review.fs-5 ĐÁNH GIÁ
+                    //- SPECS CONTENT
+                    hr.mt-2
+                    .long-details__specs-content.d-flex.flex-column.gap-4 
+                        each val in [1, 2, 3, 4]
+                            +productSpecContent(val, `details-spec-${val}`)
+                //- PRODUCT SUGGESTIONS
+                .long-details__suggestions.col-0.col-lg-4.d-none.d-md-flex.d-flex.flex-row.flex-lg-column.gap-5.mt-5.mt-lg-0
+                    +suggestionField('SẢN PHẨM BÁN CHẠY', [productDetails, productDetails, productDetails])
+                    +suggestionField('SẢN PHẨM MUA NHIỀU', [productDetails, productDetails, productDetails])
+                    

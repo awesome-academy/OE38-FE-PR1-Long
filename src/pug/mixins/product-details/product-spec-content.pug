@@ -1,0 +1,14 @@
+mixin productSpecContent(order, img, header='THE MARK OF A LEGEND')
+    .row.align-items-center
+        if order % 2 == 1
+            .col-6.order-0.text-start 
+                h3.fs-6= header
+                p.fs-7= productSpecDesc
+            .col-6.order-0.d-flex.justify-content-end 
+                img.w-75(src=`${pagesAssetSrc}/images/${img}.svg`, alt="Product spec")
+        else 
+            .col-6.order-1.text-end 
+                h3.fs-6= header
+                p.fs-7= productSpecDesc 
+            .col-6.order-0.justify-content-start 
+                img.w-75.w-lg-100(src=`${pagesAssetSrc}/images/${img}.svg`, alt="Product spec")
