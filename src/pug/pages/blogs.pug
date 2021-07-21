@@ -1,4 +1,61 @@
 extends ../layouts/default-layout
 
-block main 
-    h1 This is the blogs page
+block variables 
+    -
+        const productsNavItems = [
+            {id: 'cosmetics', category: 'MỸ PHẨM', subcategories: ['Nước hoa']},
+            {id: 'jewelry', category: 'TRANG SỨC', subcategories: ['Vòng tay', 'Nhẫn', 'Lắc chân', 'Phụ kiện khác', 'Giày lười', 'Giày mọi']},
+            {id: 'accessory', category: 'PHỤ KIỆN', subcategories: ['Hoa tai']},
+            {id: 'perfume', category: 'NƯỚC HOA', subcategories: ['Nước hoa']},
+        ]
+    -   
+        const productTags = ['Hoa tai', 'Son', 'Nước hoa', 'Giày', 'Sandal', 'Áo sơ mi', 'Nước hoa', 'Trẻ em', 'Thời trang nữ']
+
+    -
+        let productDetails = {
+            id: 'TYFFANY MS 3201',
+            img: 'details-card', 
+            producer: 'LẮC TAY TYFFANY XU HƯỚNG MỚI NHẤT ', 
+            shortName: 'Mỹ phẩm châu Âu', 
+            longName: 'Mỹ phẩm châu Âu thương hiệu hàng đầu thế giới',
+            description: 'Không thể phủ nhận, thời trang và phong cách chính là “tuyên ngôn” không lời mạnh mẽ nhất của mỗi người phụ nữ. Do đó, việc mua sắm thời trang trở thành niềm vui, và có khi là nguồn cảm hứng vô tận để phái đẹp sống vui, sống đẹp hơn trong mắt nửa còn lại của thế giới. Để F5 tủ đồ của mình trước những xu hướng ngày một đa dạng hơn trong thế giới thời trang, nhiều chị em không ngần ngại chi tiêu “mạnh tay” để sở hữu những món đồ yêu thích.',
+            price: 955000,
+            originalPrice: 999000,            
+            rating: 5, 
+            sold: 4,
+            colors: ['Bạc', 'Vàng', 'Xanh'],
+            sizes: [12, 13, 14, 15],
+            likes: [{'facebook': 0}, {'tweeter': 0}, {'google': 0}]
+        }
+    -   
+        let productSpecDesc = `Tự hào được ghi là năm mà Tiffany & Co là
+                                thành lập, bộ sưu tập mang tính biểu tượng này cung cấp cho một cái gật đầu với
+                                qua trong khi thể hiện một cảm giác hiện đại với kiểu dáng đẹp
+                                đường cong và đường nét mượt mà. `
+
+    block includes 
+    include ../mixins/page-directory
+    include ../mixins/pagination
+    include ../mixins/blog  
+    include ../mixins/product-details/product-images-carousel
+    include ../mixins/product-details/suggestion-field
+    include ../mixins/product-details/product-spec-content
+            
+block main
+    main.blogs.pb-3.mb-5 
+        //- BLOGS PAGE DIRECTORY
+        .blogs__directory.pt-3.mb-3.fs-7
+            +page-directory([
+                {name: 'Home', to: HOMEPAGE},
+                {name: 'Blog', to: BLOGS}], 'olivedrab')
+        //- BLOGS MAIN
+        .blogs__main    
+            +pagination(3) 
+            hr.mt-1.bg-lightgray
+            .blogs__main-ctn.row.g-5.mt-4.mb-5
+                    - for(let val = 1; val <= 9; val++) {
+                        .col-12.col-sm-6.col-lg-4.mt-4.mb-4.mt-lg-0
+                            +blog-card-and-details(blogs[val], 'card')
+                    - }
+            +pagination(3) 
+            hr.bg-lightgray

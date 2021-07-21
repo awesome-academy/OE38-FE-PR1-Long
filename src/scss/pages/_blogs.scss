@@ -1,0 +1,5 @@
+.blogs {
+    padding-top: 6rem;
+    &__main,
+    &__directory { @extend .main-layout; }
+}

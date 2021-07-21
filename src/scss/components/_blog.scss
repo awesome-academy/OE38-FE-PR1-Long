@@ -7,6 +7,12 @@
                 color: black!important;
             }
         }
+
+        #read-more {
+            &::after {
+                content: ' >';
+            }
+        }
     }
     &--card {
         .blog__desc {margin-top: 0;}
