@@ -1,4 +1,59 @@
 extends ../layouts/default-layout
 
-block main 
-    h1 This is the sign in page
+block variables
+    -   
+        const inputFields = [
+            {
+                legend: 'KHÁCH HÀNG ĐĂNG KÝ',
+                inputs: [
+                    {
+                        type: 'label-only', 
+                        label: 'Nếu bạn có một tài khoản, xin vui lòng đăng nhập.'
+                    },
+                    {
+                        id: 'email', 
+                        type: 'input', 
+                        layout: 'row', 
+                        label: 'Địa chỉ email *', 
+                        validation: {type: 'email', required: true}, 
+                        help: "", 
+                        invalid: false
+                    },
+                    {
+                        id: 'personal-password', 
+                        type: 'input', 
+                        layout: 'row', 
+                        label: 'Password *', 
+                        validation: {type: 'password', required: true, maxLength: 24, minLength: 6}, 
+                        help: "", 
+                        invalid: false
+                    }    
+                ]
+            }
+        ]
+
+include ../mixins/form-button
+include ../mixins/input
+include ../mixins/page-directory
+
+block main
+    main.sign-in
+        .container.mt-3  
+            //- PAGE DIRECTORY 
+            +page-directory([
+                {name: 'Home', to: HOMEPAGE},
+                {name: 'Tài khoản', to: ACCOUNT}
+            ], 'olivedrab')
+            //- HEADER
+            .header.d-flex.justify-content-between.align-items-center
+                h3.pt-3.pb-3.fw-normal ĐĂNG NHẬP 
+                +form-button('a', 'ĐĂNG KÝ', '', '', 'sign-up.html')
+            //- FORM
+            form.form.row.ms-0.me-0.pb-3.mb-5(action="")
+                .form-content.col-12.col-lg-6
+                    fieldset.form-fields.ms-4.me-4 
+                        each inputField in inputFields
+                            +inputField(inputField)
+                    .form-nav.ms-4.me-4.mt-3.d-flex.justify-content-start.align-items-center.gap-4
+                        a.fs-7.text-black.fw-bold(href='#') Quên Mật Khẩu?
+                        +form-button('button', 'ĐĂNG NHẬP', 'submit')
