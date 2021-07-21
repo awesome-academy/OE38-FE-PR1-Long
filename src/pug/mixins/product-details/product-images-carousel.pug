@@ -1,0 +1,17 @@
+mixin productImagesCarousel 
+    .carousel.slide#productImgs(data-bs-ride="carousel")
+        //- CAROUSEL CONTENT
+        .carousel-inner
+            .carousel-item.active
+                +productImgs
+            .carousel-item
+                +productImgs
+        //- CAROUSEL BUTTONS
+        button.carousel-control-prev.h-max.top-100.start-50.translate-middle.mt-3(type="button" data-bs-target="#productImgs" data-bs-slide="prev")
+            img.icon--details-carousel.w-100(src=`${pagesAssetSrc}/icons/arrow-down-gray.svg`, alt="Carousel arrow")
+        button.carousel-control-next.h-max.top-0.start-50.translate-middle.mb-3(type="button" data-bs-target="#productImgs" data-bs-slide="next")
+            img.icon--details-carousel.mb-4.w-100(src=`${pagesAssetSrc}/icons/arrow-up-gray.svg`, alt="Carousel arrow")
+
+mixin productImgs 
+    each val in [1, 2, 3, 4]
+        img.w-100(src=`${pagesAssetSrc}/images/details-carousel-${val}.svg`, alt="Product")

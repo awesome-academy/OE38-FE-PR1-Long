@@ -1,0 +1,40 @@
+.product-details {
+    padding-top: 6rem;
+    &__main,
+    &__directory {
+        @extend .main-layout;
+    }
+    
+    &__main {
+        .long-details {
+            &__specs {
+                &-header {
+                    h2 { 
+                        color: $gray-dim;
+                        cursor: pointer;
+                        &:hover { color: black; }
+                    }
+                }
+            }
+            &__suggestions {
+                .product {
+                    border-bottom: 1px dotted $gray-primary;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: stretch;
+                    &__img-ctn {
+                        width: 40%;
+                        height: auto;
+                    }
+                    &__rating {
+                        img { width: .5rem;}
+                        .product__sold { font-size:10px; }
+                    }
+                }
+                &-field {
+                    .product:last-child { border: 0; }
+                }
+            }
+        }
+    }
+}
