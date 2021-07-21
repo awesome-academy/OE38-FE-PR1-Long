@@ -1,0 +1,185 @@
+@use '../base/mixins' as m;
+
+.navbar {
+    &-toggler {
+        @media (max-width: 992px) {
+            display: flex;
+        }
+
+        align-items: center;
+        justify-content: center;
+        padding: .5rem;
+        background-color: black;
+        color: white;
+    }
+
+    &-container {
+        .nav-item,
+        .navbar-brand,
+        .toggle-btn-container {
+            display: flex;
+            align-items: center;
+
+            padding: 2rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Thirsty Script';
+        
+            & span:first-child {
+                background-color: olivedrab;
+                font-size: 2.5rem;
+            }
+            & span:last-child {
+                font-size: 2rem;
+            }
+        }
+
+        &__left {
+            
+        }
+        
+        .navbar__right {
+            flex-grow: 1;
+            
+            @include m.mediaQueryMin('medium') {
+                flex-grow: .8;
+            }
+            @include m.mediaQueryMin('extra-large') {
+                flex-grow: .4;
+            }
+
+            .dropdown-toggle {
+                &--cart::after {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .nav-item {
+        font-weight: bold;
+        font-family: 'Open Sans', sans-serif;
+        &--nav-dd {
+            position: relative;
+        }
+    }
+
+    .dropdown-menu {
+        &--nav {
+            position: relative;
+            border: .5rem solid olivedrab;
+            border-radius: 0;
+            transition: .2s;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: -1.5rem;
+                @include m.arrow(
+                    $direction: up,
+                    $size: .5rem,
+                    $backgroundColor: olivedrab
+                )
+            }
+
+            &--cart {
+                @include m.mediaQueryMax(large) {
+                    display: none!important;
+                }
+
+                &::before {
+                    left: 60%;
+                }
+
+                .cart__summary-price {
+                    font-family: 'Thirsty Script';
+                    color: olivedrab;
+                }
+
+                .cart__product  {
+                    &-price {
+                        font-family: 'Thirsty Script';
+                        color: olivedrab;
+                    }
+                }
+            }
+
+            &--cate {
+                @include m.mediaQueryMin('extra-small') {
+                    width: 100%;
+                    border: 0;
+                    ul {
+                        background-color: inherit;
+                    }
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                @include m.mediaQueryMin('large') {
+                    width: 125%;
+                    border: .5rem solid olivedrab;
+                    border-radius: 0;
+                    background-color: white;
+
+                    &::before {
+                        display: block;
+                        left: 38%;
+                    }
+                }
+
+                .category__subcategories {
+                    flex-basis: 33.3%;
+                
+                    &__header {
+                        font-weight: bold;
+                        font-family: 'Open Sans', sans-serif;
+                    }
+                }
+            }
+
+            .dropdown-item {
+                &--category {
+                    position: relative;
+                    @include m.transitionPreviousProps(
+                        $transition: .2s,
+                        $backgroundColor: white,
+                        $color: black,
+                        $opacity: 1
+                    );
+                    &::before {
+                        content: '';
+                        width: .2rem;
+                        height: .2rem;
+                        @include m.position(
+                            $position: absolute,
+                            $type: centerVertical,
+                            $left: -.2rem
+                        );
+                        @include m.transitionPreviousProps(
+                            $backgroundColor: black,
+                            $transform: translate(.2rem, -50%)
+                        );
+                    }
+                    &:hover {
+                        @include m.transitionDoneProps(
+                            $backgroundColor: white,
+                            $color: olivedrab,
+                            $transform: translateX(.5rem),
+                            $listStyle: inherit
+                        );
+                        
+                        &::before {
+                            @include m.transitionDoneProps(
+                                $backgroundColor: olivedrab,
+                                $transform: translate(-.2rem, -50%),
+                                $opacity: 1
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }   
+}

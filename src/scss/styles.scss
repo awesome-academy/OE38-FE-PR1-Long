@@ -1,3 +1,6 @@
 @use './base/global' as g;
 @use './base/mixins' as m;
 @use './base/variables' as v;
+@use './base/fonts' as f;
+@use './layouts/navbar';
+@use './layouts/footer';

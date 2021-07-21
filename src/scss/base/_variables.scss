@@ -1,0 +1,48 @@
+
+$breakpoints: (
+    extra-small: 0,
+    small: 576px,
+    medium: 768px,
+    large: 992px, 
+    extra-large: 1200px
+);
+
+$positions: (initial);
+
+$width: (
+    1rem: 1rem,
+    60: 60%,
+    125: 125%,
+    max: max-content
+);
+
+$height: (
+    max: max-content
+);
+
+$icon-size: (
+    point-5: .5rem,
+    1: 1rem,
+    2: 1.5rem,
+    3: 2rem,
+    small-img: 5rem
+);
+
+$flex-grow: (
+    3: .3,
+    5: .5,
+    6: .6,
+    7: .7
+);
+
+$padding: (
+    layout: 10rem
+);
+
+$colors: (olivedrab, black, white, initial, inherit);
+
+$font-size: (
+    7: 12px
+);
+
+$border-width-dd-menu--nav: 5px

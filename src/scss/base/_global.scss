@@ -1,0 +1,81 @@
+@use './variables' as v;
+@use './mixins' as m;
+
+:root {
+    @each $position in v.$positions {
+        .position-#{$position} {
+            position: $position;
+        }
+    }
+    @each $widthType, $widthValue in v.$width {
+        .w-#{$widthType} {
+            width: $widthValue;
+        }
+    }
+    @each $heightType, $heightValue in v.$height {
+        .h-#{$heightType} {
+            height: $heightValue;
+        }
+    }
+    @each $iconType, $iconSize in v.$icon-size {
+        .icon-#{$iconType} {
+            width: $iconSize;
+            height: auto;
+        }
+    }
+    @each $flexGrowType, $flexGrowValue in v.$flex-grow {
+        .flex-grow-#{$flexGrowType} {
+            flex-grow: $flexGrowValue;
+        }
+    }
+    @each $paddingType, $paddingValue in v.$padding {
+        .p-#{$paddingType} {
+            padding: 0 $paddingValue;
+        }
+    }
+    @each $fontSizeType, $fontSizeValue in v.$font-size {
+        .fs-#{$fontSizeType} {
+            font-size: $fontSizeValue;
+        }
+    }
+    @each $color in v.$colors {
+        .text-#{$color} {
+            color: $color !important;
+        }
+    }
+}
+
+// @include m.fontFaces (
+//     ('Viceroy JF', '../../../assets/fonts/Viceroy JF.ttf', 'truetype'),
+//     ('Thirsty Script', '../../../assets/fonts/ThirstyScriptExtraBoldDemo.otf', 'opentype')
+// );
+
+@font-face {
+  font-family: "Viceroy JF";
+  src: url("../../../assets/fonts/Viceroy JF.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Thirsty Script";
+  src: url("../../../assets/fonts/ThirstyScriptExtraBoldDemo.otf") format("opentype");
+}
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.icon {
+    &--nav {
+        @extend .icon-1;
+    }
+    &--cart-nav {
+        @extend .icon-small-img;
+    }
+    &--cart-dd {
+        @extend .icon-point-5;
+    }
+}
