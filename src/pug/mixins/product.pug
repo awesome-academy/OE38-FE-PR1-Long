@@ -1,21 +1,64 @@
--   let productAssetSrc = '../../../assets'
-
 mixin product-grid(props)
     +product(props, 'grid')
         +producer(props.producer)
         +title
             h1.product__name.text-center.fs-6= props.shortName
             hr.line-break.m-auto.mt-2.mb-2
-        //- +desc(props.description)
         +price
             p.product__price.text-center.fw-light.m-0  
                 span.product__discount-price.text-olivedrab.me-2.price   #{props.price}            
                 if props.originalPrice
                     i.product__original-price.fs-7.text-lightgray.price   #{props.originalPrice}
         +card-footer
+        
+mixin product-list(props)
+    +product(props, 'list')
+        +title(props.id) 
+            h1.product__name.text-center.fs-6= props.longName
+        +rating(props.sold)
+        +desc(props.description)
+        +price 
+            p.product__price.text-center.fw-light.m-0  
+                span.product__discount-price.text-olivedrab.me-2 #{props.price}đ 
+                if props.originalPrice
+                    i.product__original-price.fs-6.text-lightgray #{props.originalPrice}đ
+        +card-footer
+
+mixin product-details(props)
+    +product(props, 'details')
+        +title(props.id) 
+            h1.product__name.fs-5.fw-normal.text-darkslategray.m-0 #{props.longName.toUpperCase()}
+        +code(props.id)
+        +price 
+            .product__price.fw-light.m-0.mt-2.mb-2         
+                span.product__discount-price.text-black.me-2.fs-3 #{props.price}đ 
+                if props.originalPrice
+                    span.product__original-price.fs-5.text-lightgray #{props.originalPrice}đ
+        +desc(props.description)
+        +color(props.colors)
+        +size(props.sizes)
+        +card-footer
+        .d-flex.mt-2.flex-row.align-items-center
+            .fs-8     
+                span.text-dimgray Shipping & 
+                span.text-indianred Returns
+            +socialMedia
+
+mixin product-recommend(props) 
+    +product(props, 'recommend')
+        +title 
+            h1.product__name.text-start.fs-6= props.shortName
+        +rating(props.sold)
+        +price 
+            p.product__price.text-start.fw-light.m-0  
+                span.product__discount-price.text-black.me-2 #{props.price}đ 
+                if props.originalPrice
+                    span.product__original-price.fs-7.text-lightgray #{props.originalPrice}đ
+
 
 mixin product(props, type)
     .card.product.border-0.pe-2.col(class=`product--${type}`)
+        //- CARD IMG
         .product__img-ctn(href="#") 
             a(href='#')
                 img.card-img-top.product__img(
