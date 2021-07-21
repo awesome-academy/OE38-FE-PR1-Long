@@ -1,4 +1,49 @@
 extends ../layouts/default-layout
 
+include ../mixins/form-button
+include ../mixins/input
+include ../mixins/page-directory
+
+block variables 
+    -   
+        const productsTableRowHeaders = ['ẢNH', 'TÊN SẢN PHẨM', 'GIÁ', 'SỐ LƯỢNG', 'TỔNG SỐ', 'XÓA']
+    -
+        const productsTableRows = [
+            {id: 1, img: 'cart-product-1', name: 'Lắc tay D&G', price: '345000', amount: 1, total: '345000'},
+            {id: 2, img: 'cart-product-1', name: 'Lắc tay D&G', price: '345000', amount: 1, total: '345000'}   
+        ]    
+
 block main
-    h1 This is the cart page
+    main.cart
+        .container.pb-5.mt-3   
+            //- PAGE DIRECTORY 
+            section.sign-up__page-directory
+                +page-directory([
+                    {name: 'Home', to: HOMEPAGE},
+                    {name: 'Giỏ hàng', to: CART}
+                ], 'olivedrab')
+            h3.fw-normal.p-0.mb-3 GIỎ HÀNG
+            //- CART TABLE
+            table.cart__table.table.table-bordered 
+                tr.text-center.bg-whitesmoke
+                    each header in productsTableRowHeaders
+                        th.fs-7.pe-3.ps-3(scope='col')= header 
+                each row in productsTableRows 
+                    tr.text-center.fs-7
+                        td.product__img 
+                            img(src=`${pagesAssetSrc}/images/${row.img}.png`, alt="Product") 
+                        td.product__name= row.name 
+                        td.product__price 
+                            span.price= row.price
+                        td.product__amount 
+                            input(type="number" value=`${row.amount}` min='1')
+                        td.product__total
+                            span.price= row.total 
+                        td.product__delete 
+                            img.pointer(
+                                id=`${row.id}`,
+                                src=`${pagesAssetSrc}/icons/delete.svg`, alt="Delete")
+            .cart__btns.d-flex.justify-content-end.gap-3     
+                +form-button('button', 'TIẾP TỤC MUA HÀNG', '', '', '')
+                +form-button('button', 'XÓA', '', '', '')
+                +form-button('button', 'CẬP NHẬT', '', '', '')

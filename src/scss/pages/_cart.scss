@@ -1,0 +1,30 @@
+.cart {
+    @extend .main-layout;
+    padding-top: 6rem;
+
+    &__table {
+        td {  vertical-align: middle; }
+
+        .product__amount {
+            input {
+                width: 2rem;
+                text-align: center;
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                }
+            }
+        }
+
+        .product__total { font-family: $font-lobster; }
+    }
+
+    &__btns {
+        .btn {
+            &:hover {
+                background-color: $green-primary;
+                border-color: $green-primary;
+            }
+        }
+    }
+}
