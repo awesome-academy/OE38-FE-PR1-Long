@@ -1,4 +1,23 @@
 extends ../layouts/default-layout
 
-block main 
-    h1 This is the about-us page
+block variables 
+
+block includes 
+    include ../mixins/page-directory
+
+block main
+    main.cart
+        .container.pb-5.mt-3   
+            +page-directory([
+                {name: 'Home', to: HOMEPAGE},
+                {name: 'Về chúng tôi', to: ABOUT_US}], 'olivedrab')
+            h1.fw-normal.p-0.mb-3.fs-4 VỀ CHÚNG TÔI
+            .row 
+                .col-12.col-lg-6.mb-2.mb-lg-0
+                    img.w-100(src=`${pagesAssetSrc}/images/about-us.svg`, alt="About us")
+                .col-12.col-lg-6
+                    .logo.mb-3
+                        include ../components/logo
+                    h2.fs-5 Giới thiệu chung về mỹ phẩm handmade Mandala 
+                    p.fs-7 Hi, chào các nàng ... sau khá nhiều lời hứa hão thì hôm nay tớ quay lại hâm nóng cái Blog này vào một ngày đầu hè nóng oi bức, khi mà dân tình xô nhau đi tắm Free để giải nhiệt. Hi, chào các nàng ... sau khá nhiều lời hứa hão thì hôm nay tớ quay lại hâm nóng cái Blog này vào một ngày đầu hè nóng oi bức, khi mà dân tình xô nhau đi tắm Free để giải nhiệt.sau khá nhiều lời hứa hão thì hôm nay tớ quay lại hâm nóng cái Blog này vào một ngày đầu hè nóng oi bức, khi mà dân tình xô nhau đi tắm Free để giải nhiệt.  
+                    a.text-dimgray.fs-8(href='#') Xem thêm
