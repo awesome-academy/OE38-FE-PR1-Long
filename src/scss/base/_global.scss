@@ -1,0 +1,88 @@
+:root {
+    @each $position in $positions {
+        .position-#{$position} {
+            position: $position;
+        }
+    }
+    @each $widthType, $widthValue in $width {
+        .w-#{$widthType} {
+            width: $widthValue;
+        }
+    }
+    @each $heightType, $heightValue in $height {
+        .h-#{$heightType} {
+            height: $heightValue;
+        }
+    }
+    @each $iconType, $iconSize in $icon-size {
+        .icon-#{$iconType} {
+            width: $iconSize;
+            height: auto;
+        }
+    }
+    @each $flexGrowType, $flexGrowValue in $flex-grow {
+        .flex-grow-#{$flexGrowType} {
+            flex-grow: $flexGrowValue;
+        }
+    }
+    @each $paddingType, $paddingValue in $padding {
+        .p-#{$paddingType} {
+            padding: 0 $paddingValue;
+        }
+    }
+    @each $fontSizeType, $fontSizeValue in $font-size {
+        .fs-#{$fontSizeType} {
+            font-size: $fontSizeValue;
+        }
+    }
+    @each $color in $colors {
+        .text-#{$color} {
+            color: $color !important;
+        }
+    }
+    @each $bg in $background-colors {
+        .bg-#{$bg} {
+            background-color: $bg !important;
+        }
+    }
+}
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.icon {
+    // NAVBAR
+    @extend .icon-1;
+    
+    &--nav {
+        @extend .icon-1;
+    }
+    &--cart-nav {
+        @extend .icon-small-img;
+    }
+    &--cart-dd {
+        @extend .icon-point-5;
+    }
+
+    // PRODUCT CARD
+    &--product-card {
+        @extend .icon-4;
+        padding: .7rem;
+        border: 2px solid lightgray;
+        border-radius: 10px;
+        transition: .2s;
+        cursor: pointer;
+
+        &:hover {
+            background-color: olivedrab;
+        }
+    }
+
+    // COMPANY INTRO
+    &--med { @extend .icon-2; }
+}

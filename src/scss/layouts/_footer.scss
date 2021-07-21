@@ -1,0 +1,26 @@
+@use '../base/mixins' as m;
+
+.footer {
+    &__nav-item {
+        @include m.transitionPreviousProps(
+            $transition: .2s,
+            $backgroundColor: black,
+            $color: dimgray,
+            $opacity: 1,
+            $listStyle: none
+        );
+
+        &:hover {
+            @include m.transitionDoneProps(
+                $backgroundColor: black,
+                $color: olivedrab,
+                $transform: translateX(1rem),
+                $listStyle: square
+            );
+        }
+
+        a {
+            color: inherit;
+        }
+    }
+}

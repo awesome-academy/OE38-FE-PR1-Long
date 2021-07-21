@@ -1,0 +1,58 @@
+
+$breakpoints: (
+    extra-small: 0,
+    small: 576px,
+    medium: 768px,
+    large: 992px, 
+    extra-large: 1200px,
+    fullscreen: 1400px
+);
+
+$positions: (initial);
+
+$width: (
+    1rem: 1rem,
+    60: 60%,
+    125: 125%,
+    max: max-content
+);
+
+$height: (
+    max: max-content
+);
+
+$icon-size: (
+    point-5: .5rem,
+    1: 1rem,
+    2: 1.5rem,
+    3: 2rem,
+    4: 2.5rem,
+    small-img: 5rem
+);
+
+
+$flex-grow: (
+    3: .3,
+    5: .5,
+    6: .6,
+    7: .7
+);
+
+$padding: (
+    layout: 10rem
+);
+
+$colors: (olivedrab, black, lavender, white, dimgray, lightslategray, lightgray, indianred, initial, inherit);
+
+$background-colors: (black, whitesmoke);
+
+$products-promotion-bgr: #b1b4b9;
+
+$font-size: (
+    7: 12px,
+    8: 10px,
+    initial: initial,
+    inherit: inherit
+);
+
+$border-width-dd-menu--nav: 5px
