@@ -3,7 +3,7 @@
         @include transitionPreviousProps(
             $transition: .2s,
             $backgroundColor: black,
-            $color: dimgray,
+            $color: $gray-dim,
             $opacity: 1,
             $listStyle: none
         );
@@ -11,7 +11,7 @@
         &:hover {
             @include transitionDoneProps(
                 $backgroundColor: black,
-                $color: olivedrab,
+                $color: $green-primary,
                 $transform: translateX(1rem),
                 $listStyle: square
             );

@@ -1,0 +1,208 @@
+.homepage {
+    overflow: hidden;
+
+    .intro {
+        overflow-y: hidden;
+        background-color: $gray-lightest;
+
+        &__product {
+            padding-top: 5rem;
+            padding-bottom: 2rem;
+
+            &-ctn { height: 80%; }
+
+            .img-ctn {
+                @include mediaQueryMin('extra-small') {max-height: 10rem;}
+                @include mediaQueryMin('large') {max-height: 20vw;}
+                @include mediaQueryMin('extra-large') {max-height: 25vw;}
+            }
+            
+            &-img {max-height: 100%;}
+
+            &-title {
+                font-family: 'Viceroy JF';
+                font-size: calc(1rem + 5.5vw);
+                color: $green-primary;
+            }
+            
+            &-name {
+                color: $pink-dim;
+                font-size: calc(.5rem + 1vw);
+            }
+            
+            &-price { font-size: calc(.8rem + 1vw); }
+            
+            &-buy {
+                font-size: calc(.6rem + .5vw);
+                text-decoration: underline;
+            }
+        }
+
+        &__woman {
+            @include mediaQueryMin('extra-small') {
+                position: absolute;
+                top: 0;
+                right: -50%;
+                width: 100%;
+                height: 100%;
+            }
+            @include mediaQueryMin('small') {
+                right: 0;
+                width: 65%;
+            }
+            @include mediaQueryMin('medium') {
+                right: 0;
+                width: 50%;
+            }
+            @include mediaQueryMin('large') {
+                position: relative;
+                right: 0;
+                width: 50%;
+            }
+        }
+    }
+
+    .promotion {
+        @extend .main-layout;
+
+        &__short {
+            &-item {
+                @include mediaQueryMin('extra-small') {padding: 0 25%;}
+                @include mediaQueryMin('small') {padding: 0;}
+            
+                &:nth-child(2) {
+                    @include mediaQueryMin('extra-small') {
+                        border: 2px solid $gray-primary;
+                        border-left: 0;
+                        border-right: 0;
+                    }
+                    @include mediaQueryMin('small') {
+                        border: 2px solid $gray-primary;
+                        border-top: 0;
+                        border-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        &__long {
+            &-img {
+                width: 100%;
+                height: 100%;
+            }
+
+            &-product {
+                position: relative;
+                width: 100%;
+                height: 100%;
+
+                h2 {
+                    @include mediaQueryMin('medium') {font-size: 1rem};
+                    @include mediaQueryMin('extra-large') {font-size: 1.5rem};
+                }
+
+                &::before {
+                    content: '';
+                    @include position($position: absolute, $type: centerVertical);
+                    @include crossBrowser((transform: translateY(-50%)))
+                }
+
+                &--shower-gel,
+                &--daisy {
+                    font-family: 'Roboto Slab', serif;
+                    &::before {
+                        left: -3rem;
+                        @include arrow( $direction: left, $size: 1.5rem, $backgroundColor: white )
+                    }
+                }
+
+                &--shower-gel {
+                    background-color: $yellow-1;
+
+                    &::before {border-right-color: $yellow-1;}
+                }    
+
+                &--daisy {
+                    background-color: $pink-1;
+                    color: black;
+                    
+                    &::before { border-right-color: $pink-1; }
+
+                    h3 { font-family: $font-playball; }
+                    
+                    img {
+                        @include mediaQueryMin('medium') {width: 35%;}
+                        @include mediaQueryMin('extra-large') {width: auto;}
+                    }
+                }
+
+                &--diamond,
+                &--perfume {
+                    font-family: $font-roboto;
+                    color: black;
+                    &::before {
+                        left: 100%;
+                        @include arrow(
+                            $direction: right, $size: 1.5rem, $backgroundColor: #cbd3df
+                        );
+                        z-index: 1
+                    }
+                }
+
+                &--perfume { background-color:$gray-primary; }
+
+                &--diamond {
+                    background-color: $blue-1;                    
+
+                    &::before { border-left-color: $blue-1; }
+                }
+            }
+            
+            &-combo {
+                @include position($position: absolute, $top: 4rem, $left: 3rem);
+
+                h3 { line-height: 1rem; }
+                
+                h4 {
+                    font-family: $font-graceland;
+                    font-size: 4rem
+                }
+            }
+
+            .line-breaker {
+                @include mediaQueryMin('medium') { width: 80%; }
+                @include mediaQueryMin('extra-large') { width: auto; }
+            }
+        }
+    }
+
+    .products {
+        &__intro {
+            @extend .main-layout;
+            margin: auto;
+            &-manager {
+                @include mediaQueryMin(small) { max-height: 6rem; }
+                @include mediaQueryMin(large) { max-height: 8rem; }
+            }
+            &-flower {
+                z-index: -1;
+                
+                @mixin flowerMediaQuery($screenSize, $top, $width) {
+                    @include mediaQueryMin($screenSize) {
+                        top: $top;
+                        width: $width;
+                    }
+                }
+
+                @include flowerMediaQuery('extra-small', 0, 100%);
+                @include flowerMediaQuery('small', 15%, 75%);
+                @include flowerMediaQuery('medium', 0,75%);
+                @include flowerMediaQuery('large', -35%, 50%);
+            }
+        }
+    }
+}
+
+
+
+
