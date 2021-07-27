@@ -1,3 +1,11 @@
+#Source Code
+*.html
+html
+*.css
+css
+# Code editor
+.vscode
+
 # Logs
 logs
 *.log
