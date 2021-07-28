@@ -1,0 +1,70 @@
+//- NAV RIGHT ITEMS
+mixin navRight
+    .navbar__right.position-relative.d-flex.justify-content-end.order-1.order-lg-2
+        ul.navbar-nav.w-50.mb-2.mb-lg-0.flex-row.justify-content-around
+            //- NAV ITEM CART
+            li.nav-item.dropdown.dropdown--cart-nav.position-initial    
+                a.nav-link.dropdown-toggle.dropdown-toggle--cart#navbarDropdown(
+                    href="#", role="button",
+                    data-bs-toggle="dropdown" aria-expanded="false")    
+                    img.icon.icon--nav(
+                        src=`${navAssetsDir}/icons/shopping-cart.svg`,
+                        alt='Cart'
+                    )
+                +dropdownCart
+            //- NAV ITEM SEARCH
+            li.nav-item
+                a.nav-link(href="#")    
+                    img.icon.icon--nav(
+                        src=`${navAssetsDir}/icons/search.svg`
+                        alt='Search'
+                    )
+            //- TOGGLE BUTTON
+            .toggle-btn-container
+                button.navbar-toggler.d-flex.d-block.d-lg-none(
+                    type="button",
+                    data-bs-toggle="collapse",
+                    data-bs-target="#navbarSupportedContent",
+                    aria-controls="navbarSupportedContent",
+                    aria-expanded="false", 
+                    aria-label="Toggle navigation")
+                    img.icon.icon--nav(
+                        src=`${navAssetsDir}/icons/toggler.svg`,
+                        alt='Product'
+                    )
+
+//- DROPDOWN CART
+mixin dropdownCart 
+    ul.dropdown-menu.dropdown-menu--nav.dropdown-menu--nav--cart.end-0.p-2.w-150.align-items-top.justify-content-between(aria-labelledby="navbarDropdown")
+        each product in cartProducts
+            //- DROPDOWN CART ITEM
+            +cartProduct(product)
+        li
+            hr.dropdown-divider
+        li.d-flex.justify-content-between.mb-2
+            span Tổng số
+            span.cart__summary-price 240.000đ
+        li.p-0.mt-2
+            a.dropdown-item.w-max.p-0(href="#")  
+                button.btn.btn-dark.fs-7 GIỎ HÀNG
+
+//- CART PRODUCT
+mixin cartProduct(props)
+    li.cart__product.d-flex.justify-content-between.mb-2   
+        //- DROPDOWN CART ITEM IMG
+        a.text-inherit(href="#")
+            img.icon.icon--cart-nav(
+                src=`${navAssetsDir}/images/${props.productImg}.svg`,
+                alt='Product'
+            )
+        //- DROPDOWN CART ITEM INFO
+        a.text-inherit(href="#")
+            .cart__product-info 
+                span.fs-7.fw-bold.cart__product-name= props.productName
+                br
+                span.cart__product-price= props.productPrice
+        //- DROPDOWN CART ITEM ESCAPE
+        img.icon.icon--cart-dd.h-max.mt-2.align-self-start(
+            src=`${navAssetsDir}/icons/close.svg`,
+            alt='Close'
+        )

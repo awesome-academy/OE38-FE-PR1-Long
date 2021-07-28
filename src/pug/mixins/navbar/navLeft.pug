@@ -1,0 +1,37 @@
+//- NAV LEFT ITEMS
+mixin navLeft
+    .navbar-container__left.collapse.navbar-collapse.position-relative.flex-grow-0.order-2.order-lg-1#navbarSupportedContent
+        ul.navbar-nav.mb-0.mb-lg-0
+            each item in navLeftItems
+                +navLeftItem(item)
+
+//- NAV LEFT ITEM
+mixin navLeftItem(props)
+    if props.type == 'normal'
+        //- IF SCREEN < LG, "SAN PHAM" WITH NO DROPDOWN
+        if props.name == "SẢN PHẨM"
+            li.nav-item.p-1.fs-7.d-block.d-lg-none
+                a.nav-link.text-black(href=`${props.to}`)= props.name
+        else
+            li.nav-item.p-1.fs-7
+                a.nav-link.text-black(href=`${props.to}`)= props.name
+    //- IF SCREEN < LG, "SAN PHAM" WITH DROPDOWN
+    else if props.type == 'dropdown'
+        li.nav-item.nav-item--cate.d-none.d-lg-flex.p-1.fs-7.dropdown.position-initial    
+            a.nav-link.dropdown-toggle#categoriesDropdown.text-black(
+                href=`${props.to}`, role="button",
+                data-bs-toggle="dropdown" aria-expanded="false")= props.name
+            if props.spec == 'categories'
+                +categoriesDropdown
+
+//-  NAV PRODUCT DROPDOWN
+mixin categoriesDropdown 
+    ul.dropdown-menu.dropdown-menu--nav.dropdown-menu--nav--cate.right-0(aria-labelledby="categoriesDropdown")
+        .ctn.d-flex.justify-content-between.flex-column.flex-lg-row
+            each productCategory in productCategories
+                ul.category__subcategories.list-group-item.border-0
+                    h5.category__subcategories__header.fs-6= productCategory.category
+                    hr
+                    each subcategory in productCategory.subcategories
+                        li.category__subcategory
+                            a.dropdown-item.dropdown-item--category.ps-0.fs-7(href="#")= subcategory
