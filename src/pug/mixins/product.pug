@@ -1,0 +1,71 @@
+-   let productAssetSrc = '../../../assets'
+
+mixin product-grid(props)
+    +product(props, 'grid')
+        +producer(props.producer)
+        +title
+            h1.product__name.text-center.fs-6= props.shortName
+            hr.line-break.m-auto.mt-2.mb-2
+        //- +desc(props.description)
+        +price
+            p.product__price.text-center.fw-light.m-0  
+                span.product__discount-price.text-olivedrab.me-2.price   #{props.price}            
+                if props.originalPrice
+                    i.product__original-price.fs-7.text-lightgray.price   #{props.originalPrice}
+        +card-footer
+
+mixin product(props, type)
+    .card.product.border-0.pe-2.col(class=`product--${type}`)
+        .product__img-ctn(href="#") 
+            a(href='#')
+                img.card-img-top.product__img(
+                    src=`${pagesAssetSrc}/images/${props.img}.svg`
+                    alt='Product cover')
+        //- CARD BODY
+        .body-footer
+            .card-body.ps-0.pe-0.pb-0.pb-md-3 
+                block  
+                
+mixin producer(producer)
+    if type =='grid'
+        p.product__producer.text-lightgray.text-center.fw-bold.fs-7=    producer
+
+mixin title
+    a.text-black(href="#") 
+        block
+
+mixin code(id)
+    span.product__code.fs-7.fw-normal.text-dimgray=   id
+
+mixin rating(sold)
+    .product__rating.mb-2
+        each val in [1, 2, 3, 4, 5]
+            img.icon--nav.me-1(src=`${pagesAssetSrc}/icons/like.svg`)
+        span.product__sold.fs-6.text-lightgray.ms-2    (#{sold} Lượt mua )
+
+mixin desc(description) 
+    p.fs-7=  description
+            
+mixin price 
+    block 
+
+mixin cardSelectionField(field, values)
+    h2.fs-6.fw-bold.mt-3=   field
+    select.form-select.box-shadow-none(aria-label="Product colors")
+        each value in values 
+            option(value=`${value}`)=   value
+
+mixin color(colors) 
+    +cardSelectionField("MÀU SẮC", colors)
+
+mixin size(sizes)
+    +cardSelectionField("SIZE", sizes)
+
+mixin card-footer 
+    .card-footer.bg-white.d-flex.gap-2.border-0 
+        a.btn.product__btn.fs-7(href="#")   MUA HÀNG
+        img.icon.icon--product-card(src=`${productAssetSrc}/icons/like.svg`, alt='Like')
+        img.icon.icon--product-card(src=`${productAssetSrc}/icons/refresh.svg`, alt='Refresh')
+
+mixin socialMedia
+    img.w-75(src=`${pagesAssetSrc}/images/details-social-meds.svg`, alt="Social media")

@@ -20,7 +20,7 @@
             &-img {max-height: 100%;}
 
             &-title {
-                font-family: 'Viceroy JF';
+                font-family: $font-viceroy;
                 font-size: calc(1rem + 5.5vw);
                 color: $green-primary;
             }
@@ -109,7 +109,7 @@
 
                 &--shower-gel,
                 &--daisy {
-                    font-family: 'Roboto Slab', serif;
+                    font-family: $font-roboto-slab;
                     &::before {
                         left: -3rem;
                         @include arrow( $direction: left, $size: 1.5rem, $backgroundColor: white )
@@ -198,6 +198,124 @@
                 @include flowerMediaQuery('small', 15%, 75%);
                 @include flowerMediaQuery('medium', 0,75%);
                 @include flowerMediaQuery('large', -35%, 50%);
+            }
+        }
+
+        &__bestseller {
+            background-image: url('../../../assets/images/bestseller-bgr.png');
+
+            .product {
+                @include mediaQueryMin('extra-small') {
+                    max-height: 18rem;
+                    margin: 0 15%;
+                }
+                @include mediaQueryMin('small') {margin: 0 10%;}
+                @include mediaQueryMin('medium') {
+                    max-height: 20rem;
+                    margin: 0 .5rem;
+                }
+                @include mediaQueryMin('large') {margin: 0 .5rem;}
+            }
+
+            .carousel {
+                &-inner {height: 25rem;}
+                &-control {
+                    background-color: white;
+                    color: black;
+                    opacity: .9;
+            
+                    @include mediaQueryMin('extra-small') {width: 15%;}
+                    @include mediaQueryMin('small') {width: 10%;}
+                    @include mediaQueryMin('medium') {width: 25%;}
+                    @include mediaQueryMin('large') {width: 20%;}
+                    @include mediaQueryMin('fullscreen') {width: 15%;}
+            
+                    &-prev {
+                        justify-content: flex-end;
+                        img { margin-right: calc(-25% + 1rem); }
+                    }
+                    &-next {
+                        justify-content: flex-start;
+                        img { margin-left: calc(-25% + 1rem); }
+                    }
+                }
+            }
+
+            &-nav--upper {
+                font-family: $font-UTM;
+                color: $gray-primary;
+                .col:first-child {
+                    @include mediaQueryMin('medium') {border-right: 2px solid $gray-primary;}
+                }
+                .col:last-child {
+                    @include mediaQueryMin('medium') {border-left: 2px solid $gray-primary;}
+                }
+            }
+
+            &-nav--below {
+                @include mediaQueryMin('extra-small') { width: 100% };
+                @include mediaQueryMin('medium') { width: 50% };
+            }
+            
+        }
+    }
+
+    .company-intro {
+        @extend .main-layout;
+
+        &__social-meds {
+            .social-med {
+                opacity: .6;
+
+                @mixin visible($screen, $invisibleChildren, $visibleChildren) {
+                    @include mediaQueryMin($screen) {
+                        @each $i in $invisibleChildren {
+                            &::nth-child(#{$i}) {display: none}
+                        }
+                        @each $i in $visibleChildren {
+                            &::nth-child(#{$i}) {display: flex}
+                        }
+                    }
+                }
+
+                @include visible('extra-small', (2, 3, 4, 5), (1, 6));
+                @include visible('small', (3, 4), (1, 2, 5, 6));
+                @include visible('extra-large', (), (1, 2, 3, 4, 5, 6));
+
+                &:hover { opacity: 1; }
+            }
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+
+            padding: 1rem 0;
+            font-family: 'Thirsty Script';
+            
+            & span:first-child {
+                background-color: $green-primary;
+                font-size: 2.5rem;
+            }
+            & span:last-child {
+                font-size: 2rem;
+            }
+        }
+
+        .tags-ctn {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .2rem;
+            .tag {
+                flex-shrink: 0;
+                padding: .2rem .5rem;
+                border: 2px solid $gray-primary;
+                color: black;
+            
+                &:hover {
+                    background-color: $green-primary;
+                    color: white;
+                }
             }
         }
     }

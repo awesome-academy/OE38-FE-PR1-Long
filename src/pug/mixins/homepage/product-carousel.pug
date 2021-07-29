@@ -1,0 +1,110 @@
+mixin productCarousel(props)
+    div.slider.mb-5
+        +productCarousel-xs(props)
+        +productCarousel-sm(props)
+        +productCarousel-md(props)
+        +productCarousel-lg(props)
+        +productCarousel-xxl(props)
+
+mixin productCarousel-xs(props)
+    .carousel--product.carousel.slide.d-block.d-sm-none(
+        id=`${props.id}-xs`
+        data-bs-ride="carousel",
+        data-bs-interval="false"
+    )
+        .carousel-inner.p-0.overflow-visible
+            .carousel-item.active
+                .row.m-0
+                    +product(products[0])
+            each product in products.slice(1)
+                .carousel-item
+                    .row.m-0.g-2   
+                        +product-grid(product)
+        +carouselButtons(`${props.id}-xs`)
+
+mixin productCarousel-sm(props)
+    .carousel--product.carousel.slide.d-none.d-sm-block.d-md-none(
+            id=`${props.id}-sm`
+            data-bs-ride="carousel",
+            data-bs-interval="false"
+        )
+        .carousel-inner.p-0.overflow-visible
+            .carousel-item.active
+                .row.m-0.g-2
+                    each product in products.slice(0, 2)    
+                        +product-grid(product)
+            .carousel-item
+                .row.m-0.g-2
+                    each product in products.slice(2, 4) 
+                        +product-grid(product)
+            .carousel-item
+                .row.m-0.g-2
+                    each product in products.slice(4, 6) 
+                        +product-grid(product)
+        +carouselButtons(`${props.id}-sm`)
+
+mixin productCarousel-md(props)
+    .carousel--product.carousel.slide.d-none.d-md-block.d-lg-none(
+            id=`${props.id}-md`
+            data-bs-ride="carousel",
+            data-
+            bs-interval="false"
+        )
+        .carousel-inner.p-0.overflow-visible
+            .carousel-item.active
+                .row.m-0.g-2
+                    each product in products.slice(2)    
+                        +product-grid(product)
+            .carousel-item
+                .row.m-0.g-2
+                    each product in products.slice(2) 
+                        +product-grid(product)
+        +carouselButtons(`${props.id}-md`)
+
+mixin productCarousel-lg(props)
+    .carousel--product.carousel.slide.d-none.d-lg-block.d-xxl-none(
+        id=`${props.id}-lg`
+        data-bs-ride="carousel",
+        data-bs-interval="false"
+    )
+        .carousel-inner.p-0.overflow-visible
+            .carousel-item.active
+                .row.m-0.g-2
+                    each product in products.slice(1)    
+                        +product-grid(product)
+            .carousel-item
+                .row.m-0.g-2
+                    each product in products.slice(1) 
+                        +product-grid(product)
+        +carouselButtons(`${props.id}-lg`)
+
+mixin productCarousel-xxl(props)
+    .carousel--product.carousel.slide.d-none.d-xxl-block(
+        id=`${props.id}-xxl`
+        data-bs-ride="carousel",
+        data-bs-interval="false"
+    )
+        .carousel-inner.p-0.overflow-visible
+            .carousel-item.active
+                .row.m-0.g-2
+                    each product in products    
+                        +product-grid(product)
+            .carousel-item
+                .row.m-0.g-2
+                    each product in products 
+                        +product-grid(product)
+        +carouselButtons(`${props.id}-xxl`)
+
+mixin carouselButtons(id)
+    button.carousel-control.carousel-control-prev(
+        type="button",
+        data-bs-target=`#${id}` 
+        data-bs-slide="prev"
+    )
+        img(src=`${pagesAssetSrc}/icons/carousel-prev.svg`, alt='Prev')
+    button.carousel-control.carousel-control-next(
+        type="button",
+        data-bs-target=`#${id}`,
+        data-bs-slide="next"
+    )  
+        img(src=`${pagesAssetSrc}/icons/carousel-next.svg`, alt='Next')
