@@ -1,0 +1,6 @@
+mixin contactUsNavItem(img, content) 
+    if block
+        block 
+    else
+        img.icon.icon--nav.me-1(src=`${footerAssetDir}/icons/${img}.svg`, alt=`${img}`)
+        span= content
