@@ -1,4 +1,99 @@
 extends ../layouts/default-layout
 
+block variables
+    -   const pagesAssetSrc = '../../assets/'
+    -   
+        const promotionShortItems = [
+            {icon: 'plane', content: 'Miễn phí vận chuyển trên toàn quốc'},
+            {icon: 'gift', content: 'Nhận ngay quà tặng trị giá 350.000đ'},
+            {icon: 'black-star', content: 'Giảm 30% cho đơn hàng trên 5.000.000đ'}
+        ]
+
+block includes 
+    include ../mixins/homepage/promotion-long-text-item
+
+block nav
+    nav.navbar.navbar--homepage.navbar-expand-lg.p-0.navbar-light
+        include ../partials/navbar.pug
+
 block main
-    h1 This is the home page
+    main.homepage 
+        //- INTRO SECTION
+        section.container-fluid.m-0.intro.mb-5.bg-light.overflow-hidden
+            .container    
+                .container.row.position-relative
+                    .intro__product.col-6.d-flex.flex-column.justify-content-between
+                        .img-ctn.d-flex.flex-column.align-items-center.pb-3
+                            img.intro__product-img(src=`${pagesAssetSrc}/images/intro-product.svg`, alt='Intro product')
+                        .intro__product-info.text-center.flex-grow-1.d-flex.flex-column.justify-content-between 
+                            h2.intro__product-title.m-0 GreenVera
+                            h4.intro__product-name.fw-light Sản phẩm tinh dầu dưỡng da mới nhất của Mandala
+                            h3.intro__product-price.fw-light.text-olivedrab GIÁ CHỈ 750000
+                            a.intro__product-buy.text-black(href='#') MUA HÀNG
+                    img.intro__woman.col-6(src=`${pagesAssetSrc}/images/intro-woman.svg`, alt='Intro background')
+        
+        //- PROMOTION SECTION
+        section.container-fluid.promotion.mb-5
+                //- SHORT
+                .promotion__short.row.justify-content-center.ps-4.pe-4.justify-content-center 
+                    each promo in promotionShortItems
+                        .promotion__short-item.col-12.col-sm-4.d-flex.flex-sm-column.align-items-center.pt-2.pb-2.pe-sm-4.ps-sm-4.text-sm-center
+                            img.promotion__short-img.me-2.me-sm-0.mb-1(src=`${pagesAssetSrc}/icons/${promo.icon}.svg`, alt='Promo') 
+                            span.fw-bold.fs-7= promo.content
+                //- LONG 
+                .promotion__long.row.mt-5.justify-content-center
+                    //- FIRST BLOCK 
+                    .col-12.col-md-6.row.g-3.mt-0
+                        //- SHOWER GEL
+                        .col-6
+                            img.promotion__long-img(src=`${pagesAssetSrc}/images/promotion-shower-gel.svg`, alt='Shower-gel') 
+                        .col-6
+                            +promotion-long-text-item('promotion__long-product--shower-gel', 'SỮA TẮM', 'breaker-white', 'text-white')
+                        //- PERFUME
+                        .col-6
+                            +promotion-long-text-item('promotion__long-product--perfume', 'NƯỚC HOA')
+                        .col-6.position-relative
+                            img.promotion__long-img(src=`${pagesAssetSrc}/images/promotion-perfume.svg`, alt='Perfume') 
+                            .promotion__perfume.position-absolute.top-50.start-50.translate-middle.w-50.d-flex.flex-column
+                                h4.fw-bold.fs-7 TỪ 1/6 - 5/6/2015
+                                h4.fs-1.m-0 -40%
+                                a.align-self-end.text-olivedrab.fs-7(href="#") MUA HÀNG 
+                    //- SECOND BLOCK - VIDEO
+                    .col-12.col-md-6.pe-3.pt-3
+                        //- video.promotion__long-img(poster=`${pagesAssetSrc}/images/promotion-video.svg`)
+                        img.promotion__long-img(src=`${pagesAssetSrc}/images/promotion-video.svg`, alt='Video')
+                .promotion__long.row.mt-3
+                    //- THIRD BLOCK - COMBO
+                    .col-12.col-md-6.pe-3.pt-3.position-relative
+                        img.promotion__long-img(src=`${pagesAssetSrc}/images/promotion-combo.svg`, alt='Combo')  
+                        .promotion__long-combo 
+                            h3.fw-light COMBO TẮM TRẮNG 
+                            h4 Tại nhà     
+                    //- FORTH BLOCK 
+                    .col-12.col-md-6.row.g-3.mt-0
+                        //- DIAMOND
+                        .col-6
+                            +promotion-long-text-item('promotion__long-product--diamond', 'TRANG SỨC')
+                        .col-6
+                            img.promotion__long-img(src=`${pagesAssetSrc}/images/promotion-diamond.svg`, alt='Diamond') 
+                        .col-6
+                            img.promotion__long-img(src=`${pagesAssetSrc}/images/promotion-girl.svg`, alt='Advertise') 
+                        //- DAISY
+                        .col-6
+                            +promotion-long-text-item('promotion__long-product--daisy')
+        
+        //- PRODUCT INTRO BY COMPANY
+        section.products.pt-3.pt-md-5.pb-5.ps-0.pe-0.w-100
+            .products__intro.container.position-relative.row.justify-content-center.justify-content-lg-start.p-0
+                //- PRODUCT MANAGER
+                .img-ctn.col-2.col-md-2.order-1.order-sm-0.d-flex.justify-content-center
+                    img.products__intro-manager.rounded-circle.p-2.border.border-2(src=`${pagesAssetSrc}/images/products-manager.svg`, alt='Product Manager') 
+                //- PRODUCT OPINION
+                .products__intro-opinion.col-12.col-sm-10.col-md-8.order-0.order-sm-1.text-center.text-sm-start 
+                    p “ Vẫn là vẻ bề ngoài vô cùng đơn giản với các tông màu trắng, hồng làm chủ đạo nhưng lại tạo ra sức hút kỳ lạ với những ai cầm trên tay sản phẩm ấy! Với công nghệ cải tiến mới nhất, hãng Rohto  ”
+                    span.fs-6 TUTILE  
+                        i.fw-light.fs-6 _ Giám đốc phát triển sản phẩm
+                        br
+                    img.icon.icon--nav(src=`${pagesAssetSrc}/icons/products-dots.svg`, alt='dot')
+                //- ADDITIONAL BACKGROUND
+                img.products__intro-flower.col-4.position-absolute.end-0(src=`${pagesAssetSrc}/images/products-flower.svg`, alt='Background') 

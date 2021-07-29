@@ -1,0 +1,10 @@
+mixin promotion-long-text-item(itemClass, text, breaker='breaker-black', textColor='text-black')
+    .promotion__long-product.d-flex.flex-column.justify-content-center.align-items-center(class=`${itemClass}`)
+        if itemClass == 'promotion__long-product--daisy'
+            img.mb-2(src=`${pagesAssetSrc}/images/promotion-daisy.svg`, alt='Promo')
+            h3 Quyến rũ hơn 
+            span cùng 
+                span.fw-bold D A I S Y
+        else 
+            h2.fw-light(class=`${textColor}`)=  text
+            img.line-breaker(src=`${pagesAssetSrc}/icons/${breaker}.svg`, alt='Line break')
