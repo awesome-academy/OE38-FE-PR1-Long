@@ -109,7 +109,7 @@
 
                 &--shower-gel,
                 &--daisy {
-                    font-family: $font-roboto-slab;
+                    font-family: $font-roboto;
                     &::before {
                         left: -3rem;
                         @include arrow( $direction: left, $size: 1.5rem, $backgroundColor: white )
@@ -320,7 +320,3 @@
         }
     }
 }
-
-
-
-

@@ -1,4 +1,82 @@
 extends ../layouts/default-layout
 
+block variables 
+    -   
+        let pagesAssetSrc = '../../assets/'
+    -
+        const productsNavItems = [
+            {id: 'cosmetics', category: 'MỸ PHẨM', subcategories: ['Nước hoa']},
+            {id: 'jewelry', category: 'TRANG SỨC', subcategories: ['Vòng tay', 'Nhẫn', 'Lắc chân', 'Phụ kiện khác', 'Giày lười', 'Giày mọi']},
+            {id: 'accessory', category: 'PHỤ KIỆN', subcategories: ['Hoa tai']},
+            {id: 'perfume', category: 'NƯỚC HOA', subcategories: ['Nước hoa']},
+        ]
+    -   
+        const productTags = ['Hoa tai', 'Son', 'Nước hoa', 'Giày', 'Sandal', 'Áo sơ mi', 'Nước hoa', 'Trẻ em', 'Thời trang nữ']
+
+block includes 
+    include ../mixins/page-directory
+    include ../mixins/products-page/products-nav
+    include ../mixins/tag
+    include ../mixins/product
+    include ../mixins/pagination
+
 block main
-    h1 This is the products page
+    main.products.pb-3.mb-5 
+        //- PRODUCT PAGE DIRECTORY
+        section.products__directory.mt-3.mb-3.ps-3.pe-3.pb-3.pb-md-0.fs-7
+            +page-directory([
+                {name: 'Home', to: HOMEPAGE},
+                {name: 'Sản phẩm', to: PRODUCTS},
+                {name: 'Trang sức', to: PRODUCT_DETAILS + '?c=Trang sức'}], 'olivedrab')
+        //- PRODUCTS PROMOTION
+        section.products__promotion.d-none.d-md-block
+            .products__promotion-ctn.row
+                //- PRODUCTS PROMOTION CONTENT
+                .products__promotion-content.col-6.col-xl-8.d-flex.gap-3.align-items-center.text-white.m-0
+                    span.products__promotion-content__discount Giảm giá 50%
+                    aside.products__promotion-content__time 
+                        span.text-lavender.fw-light TRONG VÒNG 3 NGÀY 
+                        br
+                        span.fw-normal ( 25/5 - 28/5/2015 )
+                //- PRODUCTS PROMOTION BACKGROUND
+                .products__promotion-bgr.col-6.col-xl-4.d-flex.justify-content-center 
+                    img(src=`${pagesAssetSrc}/images/products-promotion.svg`, alt="Product promotion")
+        //- PRODUCTS MAIN
+        section.products__container.row.mt-5 
+            //- PRODUCTS MAIN NAV
+            section.products__container-nav.col-12.col-md-3 
+                //- CATEGORIES
+                .products__container-nav__categories
+                    //- CATEGORIES HEADER
+                    .products__container-nav__categories-header
+                        .navbar-toggler.d-flex.justify-content-start.align-items-center.gap-3.ps-0.pe-0.pt-0(
+                            data-bs-toggle="collapse" data-bs-target="#products-cate" aria-controls="products-cate" 
+                            aria-expanded="false" aria-label="Toggle navigation")
+                            //- span.navbar-toggler-icon 
+                            img.icon--nav(src=`${pagesAssetSrc}/icons/toggler-black.svg`, alt="Toggler") 
+                            h5.fs-6.m-0 DANH MỤC SẢN PHẨM
+                    //- CATEGORIES CONTENT
+                    .products__container-nav__content
+                        hr.dropdown-divider
+                        .collapse.navbar-collapse#products-cate
+                            ul.categories.ps-0 
+                                +products-nav
+                //- COMPARE PRODUCTS 
+                .products__container-nav__compare.mt-5
+                    .products__container-nav__compare-header     
+                        h5.fs-6.m-0 SO SÁNH SẢN PHẨM
+                    hr.dropdown-divider
+                    .products__container-nav__compare-content
+                        p.fs-7.lightgray Bạn chưa có sản phẩm nào để so sánh.
+                //- TAGS 
+                .products__container-nav__tags.mt-5
+                    .products__container-nav__tags-header     
+                        h5.fs-6.m-0 TAG SẢN PHẨM
+                    hr.dropdown-divider
+                    .products__container-nav__tags-content.tags-ctn
+                        each tag in productTags 
+                            +tag(tag)
+                //- BOTTOM IMAGE 
+                .products__container-nav__bottom-img.mt-5.position-relative.d-none.d-md-block
+                    img.w-100(src=`${pagesAssetSrc}/images/products-nav-img.svg`, alt="Bottom image")
+                    span.position-absolute.top-50.start-50.translate-middle.text-white.text-center.fs-3.fw-light  MANDALA STORE

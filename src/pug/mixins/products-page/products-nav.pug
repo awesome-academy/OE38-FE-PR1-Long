@@ -1,0 +1,22 @@
+mixin products-nav
+    each category in productsNavItems 
+        +products-nav-category(category)
+
+mixin products-nav-category(category)
+    li.categories__item.pt-2 
+        a.text-black.d-flex.justify-content-between.align-items-center(
+            id=`${category.id}-toggler`
+            href=`/products?subcate=${category.id}` role="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target=`#${category.id}` 
+            aria-controls=`${category.id}` 
+            aria-expanded="false" aria-label="Toggle navigation")
+            span.fs-7= category.category
+            img.arrow(src=`${pagesAssetSrc}/icons/triangle-gray-right.svg`, alt="Arrow")     
+        ul.collapse.navbar-collapse(
+            id=`${category.id}` 
+            aria-labelledby=`${category.id}`)
+            each subCate in category.subcategories 
+                li.subcategory
+                    a.text-inherit.fs-7(href="#")=   subCate
+    hr.dropdown-divider

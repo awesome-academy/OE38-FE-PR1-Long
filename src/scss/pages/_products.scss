@@ -1,0 +1,75 @@
+.products {
+    padding-top: 6rem;
+    &__directory,
+    &__container { @extend .main-layout; }
+    
+    &__directory {
+        @include mediaQueryMin('extra-small') {border-bottom: 1px solid $gray-primary};
+        @include mediaQueryMin('medium') {border-bottom:0}
+    }
+    
+    &__promotion {
+        background-color: $products-promotion-bgr;
+        &-ctn { @extend .main-layout; }
+        &-content {
+            @include mediaQueryMin('medium') { 
+                flex-direction: column; 
+                justify-content: space-evenly;
+            }
+            @include mediaQueryMin('large') { 
+                flex-direction: row; 
+                justify-content: flex-start; 
+            }
+            &__discount {
+                font-family: $font-lobster;
+                font-size: calc(1.5rem + 2vw);
+            }
+        }
+    }
+
+    &__container {
+        &-nav {
+            &__categories {
+                &-header { height: 2rem; }
+
+                .navbar-toggler {
+                    background-color: white;
+                    color: black;
+                }
+
+                .arrow { width: .5rem; }
+
+                .navbar-collapse {
+                    .categories {
+                        &__item {
+                            .subcategory {
+                                list-style: outside;
+
+                                &:hover { color: $green-primary; }
+                                &::marker { font-size: .5rem; }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &__compare {
+                .tags-ctn {
+                    gap: .5rem;
+                    .tag {
+                        border: 1px solid $gray-primary;
+                        &:hover {
+                            background-color: black;
+                            color: white;
+                            border: none;
+                        }
+                    }
+                }
+            }
+
+            &__bottom-img {
+                span { font-family: $font-roboto; }
+            }
+        }
+    }
+}

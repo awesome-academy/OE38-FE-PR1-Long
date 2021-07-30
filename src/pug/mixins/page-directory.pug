@@ -1,0 +1,6 @@
+mixin page-directory(directory, activeStyle)
+    .page-directory
+        each link in directory.slice(0, -1)
+            a.page-directory__path.me-1(href=`${link.to}`) #{link.name} 
+        a.page-directory__active(class=`page-directory__active--${activeStyle}`, href='#')= directory[directory.length - 1].name
+        hr
