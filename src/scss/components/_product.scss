@@ -55,17 +55,18 @@
 
     &--grid {
         @include mediaQueryMin('extra-small') {
-            max-height: 23rem;
+            height: 23rem;
             .card-footer { margin-top: .5rem; }
         }
         @include mediaQueryMin('medium') {
-            max-height: 25rem;
+            height: 23rem;
             .card-footer { margin-top: 0rem; }
         }
         .card-footer { justify-content: center; }
+        
     }
 
-     &--list {
+    &--list {
         display: flex;
         gap: 1rem;
         margin-bottom: 2rem;
@@ -139,7 +140,6 @@
         .body-footer {
             @include mediaQueryMin('extra-small') { width: 100%; }
             @include mediaQueryMin('large') { width: 50%; }
-            
             .card-body { padding: 0; }
 
             .card-footer {

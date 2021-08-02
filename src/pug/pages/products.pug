@@ -78,3 +78,20 @@ block main
                 .products__container-nav__bottom-img.mt-5.position-relative.d-none.d-md-block
                     img.w-100(src=`${pagesAssetSrc}/images/products-nav-img.svg`, alt="Bottom image")
                     span.position-absolute.top-50.start-50.translate-middle.text-white.text-center.fs-3.fw-light  MANDALA STORE
+            //- PRODUCTS MAIN PRODUCTS
+            .products__container-products.col-12.col-md-9.mt-5.mt-md-0
+                //- PAGINATION UPPER
+                +pagination(4)
+                hr
+                //- PRODUCTS
+                .row.products-grid
+                    each product in products
+                        .col-12.col-sm-6.col-lg-4
+                            +product-grid(product)
+                .row.products-list
+                    each product in products
+                        .col-12
+                            +product-list(product)
+                hr
+                //- PAGINATION BELOW
+                +pagination(4)
