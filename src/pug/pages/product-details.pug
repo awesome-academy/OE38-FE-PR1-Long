@@ -1,4 +1,57 @@
 extends ../layouts/default-layout
 
-block main 
-    h1 This is the Product details page
+block variables 
+    -
+        const productsNavItems = [
+            {id: 'cosmetics', category: 'MỸ PHẨM', subcategories: ['Nước hoa']},
+            {id: 'jewelry', category: 'TRANG SỨC', subcategories: ['Vòng tay', 'Nhẫn', 'Lắc chân', 'Phụ kiện khác', 'Giày lười', 'Giày mọi']},
+            {id: 'accessory', category: 'PHỤ KIỆN', subcategories: ['Hoa tai']},
+            {id: 'perfume', category: 'NƯỚC HOA', subcategories: ['Nước hoa']},
+        ]
+    -   
+        const productTags = ['Hoa tai', 'Son', 'Nước hoa', 'Giày', 'Sandal', 'Áo sơ mi', 'Nước hoa', 'Trẻ em', 'Thời trang nữ']
+    -
+        let productDetails = {
+            id: 'details-card',
+            producer: 'LẮC TAY TYFFANY XU HƯỚNG MỚI NHẤT ', 
+            shortName: 'Mỹ phẩm châu Âu', 
+            longName: 'Mỹ phẩm châu Âu thương hiệu hàng đầu thế giới',
+            description: 'Không thể phủ nhận, thời trang và phong cách chính là “tuyên ngôn” không lời mạnh mẽ nhất của mỗi người phụ nữ. Do đó, việc mua sắm thời trang trở thành niềm vui, và có khi là nguồn cảm hứng vô tận để phái đẹp sống vui, sống đẹp hơn trong mắt nửa còn lại của thế giới. Để F5 tủ đồ của mình trước những xu hướng ngày một đa dạng hơn trong thế giới thời trang, nhiều chị em không ngần ngại chi tiêu “mạnh tay” để sở hữu những món đồ yêu thích.',
+            price: 955000,
+            originalPrice: 999000,            
+            rating: 5, 
+            sold: 4,
+            colors: ['Bạc', 'Vàng', 'Xanh'],
+            sizes: [12, 13, 14, 15],
+            likes: [{'facebook': 0}, {'tweeter': 0}, {'google': 0}]
+        }
+    -   
+        let productSpecDesc = `Tự hào được ghi là năm mà Tiffany & Co là
+                                thành lập, bộ sưu tập mang tính biểu tượng này cung cấp cho một cái gật đầu với
+                                qua trong khi thể hiện một cảm giác hiện đại với kiểu dáng đẹp
+                                đường cong và đường nét mượt mà. `
+
+block includes 
+    include ../mixins/page-directory
+    include ../mixins/product
+    include ../mixins/product-details/product-images-carousel
+            
+block main
+    main.product-details.pb-3.mb-5 
+        //- PRODUCT PAGE DIRECTORY
+        section.product-details__directory.mb-3.pb-3.pt-3.mb-3.fs-7
+            +page-directory([
+                {name: 'Home', to: HOMEPAGE},
+                {name: 'Sản phẩm', to: PRODUCTS},
+                {name: 'Trang sức', to: PRODUCT_DETAILS + '?c=Trang sức'},
+                {name: 'Lắc tay', to: PRODUCT_DETAILS + 'p=Lắc tay'}], 'olivedrab')
+        //- PRODUCTS MAIN
+        section.product-details__main 
+            //- PRODUCT SHORT DETAILS
+            .short-details.row 
+                //- PRODUCT IMAGES CAROUSEL
+                .short-details__carousel.col-1.d-flex.align-items-center 
+                    +productImagesCarousel
+                //- PRODUCT CARD
+                .short-details__card.col-11
+                    +product-details(productDetails)
