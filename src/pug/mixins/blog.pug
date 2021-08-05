@@ -1,15 +1,11 @@
 mixin blog-card-and-details(props, type)
     .card.blog.border-0.col(class=`blog--${type}`)
-        a(href='#')
-            .blog__img-ctn
-                img.card-img-top.blog__img(
-                    src=`${pagesAssetSrc}/images/${props.img}.png`
-                    alt='Product cover'
-                )
+        a(href=`${BLOG_DETAILS}?p=${props.id}`)
+            +blog-img(props.id)
         //- CARD BODY
         .card-body.pt-2.pb-0.ps-0.pe-0 
             //- TITLE
-            a.text-black(href='#')
+            a.text-black(href=`${BLOG_DETAILS}?p=${props.id}`)
                 if type == 'card'
                     h2.blog__title.text-center.fs-7 #{props.title.toUpperCase()}
                     hr.m-auto.mt-2.mb-2
@@ -17,18 +13,31 @@ mixin blog-card-and-details(props, type)
                     h1.blog__title.text-start.fs-5 #{props.title.toUpperCase()}
                     hr.m-auto.mt-3.mb-3
             //- DESC
-            p.blog__desc.fs-7= props.desc
+            if type == 'card'
+                p.blog__desc.fs-7= props.shortDesc
+            else if type == 'details'
+                p.blog__desc.fs-7= props.longDesc
             .blog__author 
-                i.text-lightgray Bởi #{props.author} #{props.date}
+                i Bởi #{props.author} #{props.date}
             hr.mt-1.mb-1
         .card-footer.bg-white.d-flex.justify-content-between.border-0.p-0 
-            a.text-lightgray(href="#") Đọc thêm >
-            a.text-lightgray(href="#") 23 Bình luận
+            a#read-more(href=`${BLOG_DETAILS}?p=${props.id}`) Đọc thêm
+            a(href="#") 23 Bình luận
 
-mixin blog-img(img)
+mixin blog-recommend(props)
+    .card.blog.blog--recommend.border-0.col.d-flex.flex-row.align-items-end.gap-3.mb-3
+        a.col-5(href=`#`)
+            +blog-img(props.id)
+        .card-body.col-8.p-0 
+            .date.fw-bold 
+                span.fs-4= props.time.date
+                span.fs-7 /#{props.time.month}
+            i.blog__author.fs-7 Đăng bởi #{props.author}
+
+mixin blog-img(id)
     .blog__img-ctn
         img.card-img-top.blog__img(
-            src=`${pagesAssetSrc}/images/${img}.png`
+            src=`${pagesAssetSrc}/images/blog-${id}.png`
             alt='Product cover'
         )
 
