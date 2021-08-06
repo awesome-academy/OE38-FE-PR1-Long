@@ -1,4 +1,48 @@
 extends ../layouts/default-layout
 
-block main 
-    h1 This is the Blog Details page 
+block variables 
+    -
+        const blogsNavItems = [
+            {id: 'cosmetics', category: 'MỸ PHẨM', subcategories: ['Nước hoa']},
+            {id: 'jewelry', category: 'TRANG SỨC', subcategories: ['Vòng tay', 'Nhẫn', 'Lắc chân', 'Phụ kiện khác', 'Giày lười', 'Giày mọi']},
+            {id: 'accessory', category: 'PHỤ KIỆN', subcategories: ['Hoa tai']},
+            {id: 'perfume', category: 'NƯỚC HOA', subcategories: ['Nước hoa']}
+        ]
+    -   
+        const blogTags = ['Hoa tai', 'Son', 'Nước hoa', 'Giày', 'Sandal', 'Áo sơ mi', 'Nước hoa', 'Trẻ em', 'Thời trang nữ']
+
+block includes 
+    include ../mixins/page-directory
+    include ../mixins/blog  
+    include ../mixins/tag  
+            
+block main
+    main.blog-details.pb-3.mb-5 
+        //- BLOG PAGE DIRECTORY
+        .blog-details__directory.mb-3.pt-3.mb-3.fs-7
+            +page-directory([
+                {name: 'Home', to: HOMEPAGE},
+                {name: 'Liên hệ', to: CONTACT_US}], 'olivedrab')
+        //- BLOG MAIN
+        .blog-details__main.row 
+            //- BLOG NAV
+            .col-3.d-none.d-lg-block.blog-details__nav 
+                //- NAV NEWEST BLOGS
+                h2.fs-4.fw-normal BLOG
+                h3.fs-6.fw-normal BÀI VIẾT MỚI NHẤT
+                hr
+                .blog-details__nav-newest-blogs 
+                    - for(let i = 0; i < 3; i ++) {
+                        +blog-recommend(blogs[i])
+                    - }
+                //- NAV NEWEST TAGS
+                h3.fs-6.mt-5 BLOG TAGS
+                hr
+                .blog-details__nav-tags.tags-ctn.gap-2
+                    each tag in blogTags 
+                            +tag(tag)        
+                //- NAV NEWEST VID
+                h3.fs-6.mt-5 LATEST VIDEO
+                hr
+                .blog-details__nav-vid
+                    img.w-100.pointer(src=`${pagesAssetSrc}/images/blog-video.svg`, alt="Video")
