@@ -1,4 +1,70 @@
 extends ../layouts/default-layout
 
-block main 
-    h1 This is the Contact us page
+block variables
+    -   
+        const inputFields = [
+            {
+                legend: 'GỬI EMAIL CHO CHÚNG TÔI',
+                inputs: [
+                    {
+                        id: 'name',
+                        type: 'input', 
+                        layout: 'row', 
+                        label: 'Tên *', 
+                        validation: {type: 'email', required: true}, 
+                        help: "", 
+                        invalid: false
+                    },
+                    {
+                        id: 'email',
+                        type: 'input', 
+                        layout: 'row', 
+                        label: 'Địa chỉ email *', 
+                        validation: {type: 'email', required: true}, 
+                        help: "", 
+                        invalid: false
+                    },
+                    {
+                        id: 'message', 
+                        type: 'textarea', 
+                        layout: 'row', 
+                        label: 'Tin nhắn *', 
+                        validation: {type: 'text', required: true, rows: 3}, 
+                        help: "", 
+                        invalid: false
+                    }    
+                ]
+            }
+        ]
+
+block includes
+    include ../mixins/form-button
+    include ../mixins/input
+    include ../mixins/input
+    include ../mixins/page-directory
+
+block main
+    main.contact-us.pb-3.mb-5
+        .container.mt-3  
+            //- PAGE DIRECTORY 
+            section.contact-us__page-directory
+                +page-directory([
+                    {name: 'Home', to: HOMEPAGE},
+                    {name: 'Liên hệ', to: CONTACT_US}
+                ], 'olivedrab')
+            //- HEADER
+            section.contact-us__main
+                .header.d-flex.justify-content-between.align-items-center
+                    h3.pb-3.fw-normal LIÊN HỆ 
+                    +form-button('a', 'ĐĂNG KÝ', '', 'sign-up.html')
+                //- MAP
+                .row
+                    .map.col-12.col-lg-6 
+                        img.w-100(src=`${pagesAssetSrc}/images/contact-map.svg`, alt="Map")
+                    //- FORM
+                    form.form.col-12.col-lg-6.ms-0.me-0.mt-5.mt-lg-0
+                        .form-content
+                            each inputField in inputFields
+                                +inputField(inputField)
+                            .form-nav.mt-3.d-flex.justify-content-end
+                                +form-button('button', 'GỬI', 'submit')

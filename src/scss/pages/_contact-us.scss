@@ -1,0 +1,38 @@
+.contact-us {
+    padding-top: 6rem;
+    
+    .container {
+        @extend .main-layout;
+
+        .map {
+            img{ max-width: 100%; }
+        }
+
+        .form {
+            background-color: white;
+            box-shadow: none;
+
+            legend {
+                font-size: 14px;
+                font-weight: normal;
+            }
+
+            &-fields__input {
+                margin: 1.5rem 0;
+
+                &-name {
+                    padding-left: 0;
+                    flex-basis: 25%;
+                    margin-top: 0;
+                }
+
+                &-input {
+                    padding-right: 0;
+                    flex-basis: 75%;
+                }
+            }
+
+            &-fields { padding-top: 0; }
+        }
+    }
+}
