@@ -1,0 +1,18 @@
+.sign-in {
+    padding-top: 6rem;
+
+    .container {
+        @extend .main-layout;
+
+        .form {
+            background-color: $gray-light;
+            box-shadow: 0px 0px 5px $gray-primary;
+
+            &-fields__input {
+                margin: 1rem 0;
+                
+                &-name { padding-left: 0; }
+            }
+        }
+    }
+}
