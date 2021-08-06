@@ -1,0 +1,36 @@
+mixin inputField(inputField)
+    fieldset.form-fields.pt-4    
+        legend.fs-5= inputField.legend 
+        each input in inputField.inputs
+            +form-element(input)
+
+mixin form-element(inputProps) 
+    case inputProps.type 
+        when 'label-only'
+            span.fs-7.fw-bold.mb-5(for=`${inputProps.id}`)= inputProps.label
+        when 'input' 
+            +form-text-element(inputProps)
+        when 'textarea'
+            +form-text-element(inputProps)
+        when 'checkbox'
+            .form-check
+                input.form-check-input(id=`${inputProps.id}`)&attributes(inputProps.validation)
+                label.form-check-label.fs-7.fw-bold(for=`${inputProps.id}`)= inputProps.label
+        
+mixin form-text-element(inputProps)
+    .row.form-fields__input(class={'form-fields__input--invalid' : inputProps.invalid == true})
+        .form-fields__input-name(class={'col-2': inputProps.layout === 'row'} class={'col-12': inputProps.layout !== 'row'})
+            +input-name(inputProps.id, inputProps.label)
+        .form-fields__input-input(class={'col-10': inputProps.layout === 'row'} class={'col-12': inputProps.layout !== 'row'})
+            +input-input(inputProps.type, inputProps.id, inputProps.validation)
+        +input-help(inputProps.id, inputProps.help)
+
+mixin input-name(id, label) 
+    label.col-form-label.fs-7.fw-bold(for=`${id}`)= label
+
+mixin input-help(id, help) 
+    .col-12.form-fields__input-help.text-end
+        span.form-text.fs-7(id=`${id}`)= help
+
+mixin input-input(type, id, validation)
+    #{type}.form-control(id=`${id}`)&attributes(validation)

@@ -10,11 +10,22 @@ block variables
         ]
     -   
         const blogTags = ['Hoa tai', 'Son', 'Nước hoa', 'Giày', 'Sandal', 'Áo sơ mi', 'Nước hoa', 'Trẻ em', 'Thời trang nữ']
-
+    -
+        let contributionFormInputs = {
+            legend: 'ĐÓNG GÓP Ý KIẾN',
+            inputs: [
+                {id: 'name', type: 'input', layout: 'row', label: 'Tên *', validation: {type: 'text', required: true}, invalid: "Invalid"},
+                {id: 'email', type: 'input', layout: 'row', label: 'Email *', validation: {type: 'email', required: true}, invalid: "Invalid"},
+                {id: 'message', type: 'textarea', layout: 'row', label: 'Tin nhắn *', validation: {type: 'text', required: true, rows: 7}, help: "", invalid: "Invalid"}    
+            ]
+        }
+        
 block includes 
     include ../mixins/page-directory
     include ../mixins/blog  
     include ../mixins/tag  
+    include ../mixins/input  
+    include ../mixins/form-button   
             
 block main
     main.blog-details.pb-3.mb-5 
@@ -46,3 +57,22 @@ block main
                 hr
                 .blog-details__nav-vid
                     img.w-100.pointer(src=`${pagesAssetSrc}/images/blog-video.svg`, alt="Video")
+                //- BLOG DETAILS CONTENT
+            .blog-details__content.col-12.col-lg-9
+                //- BLOG CARD
+                .blog-details__card     
+                    +blog-card-and-details(blogs[1], 'details')
+                //- BLOG TAG
+                .blog-details__tags.d-flex.align-items-center.gap-2 
+                    h4.m-0.fs-7.text-dimgray Tag:
+                    each tag in blogTags 
+                        +tag(tag)
+                hr
+                //- BLOG CONTRIBUTION
+                .blog-details__contribution 
+                    form.blog-details__contribution-form                 
+                        +inputField(contributionFormInputs) 
+                        .row 
+                            .col-2
+                            .col-10
+                                +form-button('button', 'GỬI Ý KIẾN', '', '', '#') 

@@ -1,0 +1,9 @@
+mixin form-button(type, content, icon, to, attrs)
+    case type 
+        when 'button'
+            button.btn.btn-dark.pe-4.ps-4.rounded-0.fs-7&attributes(attrs)= content
+        when 'a'
+            a.btn.btn-dark.d-flex.align-items.center.gap-2.pe-4.ps-4.rounded-0.fs-7(href=`${to}`)
+                if icon !== ''
+                    img.icon(src=`${pagesAssetSrc}/icons/${icon}.svg`, alt='Back') 
+                span= content
