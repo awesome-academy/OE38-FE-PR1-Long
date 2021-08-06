@@ -1,0 +1,46 @@
+.form-fields__input {
+    &-input {
+        input,
+        textarea {
+            transition: .2s ease-in-out;
+            border-radius: 0;
+            
+            &:focus {
+                border-color: $green-primary;
+                box-shadow: none;
+            }
+        }
+
+        input { height: 2rem; }
+
+        &:focus-within {
+            & ~ .form-fields__input-help {
+                @include transitionDoneProps(
+                    $opacity: 1,
+                    $transform: translateY(0)
+                )
+            }
+        }
+    }
+
+    &-help {
+        color: $green-primary;
+        @include transitionPreviousProps(
+            $opacity: 0,
+            $transform: translateY(.5rem),
+            $transition: .2s
+        )
+    }
+
+    &--invalid {
+        .form-fields__input-input {
+            input { border-color: $red-primary; }
+        }
+        .form-fields__input-help {
+            transform: translateY(0);
+            opacity: 1;
+            
+            span { color: $red-primary; }
+        }
+    }
+}
