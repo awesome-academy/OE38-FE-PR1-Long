@@ -1,4 +1,57 @@
 extends ../layouts/default-layout
 
+include ../mixins/form-button
+include ../mixins/input
+include ../mixins/page-directory
+
+block variables 
+    -   
+        const orderTableRowHeaders = ['Order', 'Date', 'TÌNH TRẠNG THANH TOÁN', 'TỔNG', 'NỢ']
+    -
+        const orderTableRows = [
+            {order: '#1006', date: 'May 13, 2013', paymentStatus: 'Đã thanh toán', total: 350000, debt: 0},   
+            {order: '#1006', date: 'May 13, 2013', paymentStatus: 'Đã thanh toán', total: 350000, debt: 0},   
+            {order: '#1006', date: 'May 13, 2013', paymentStatus: 'Đã thanh toán', total: 350000, debt: 0},   
+            {order: '#1006', date: 'May 13, 2013', paymentStatus: 'Thanh toán 50%', total: 350000, debt: 275000},   
+        ]
+    
+
 block main
-    h1 This is the account page
+    main.account
+        .container.pb-5.mt-3  
+            //- PAGE DIRECTORY
+            section.account__directory
+                +page-directory([
+                    {name: 'Home', to: HOMEPAGE},
+                    {name: 'Tài khoản', to: ACCOUNT}
+                ], 'olivedrab')
+            //- ACCOUNT ORDERS
+            section.main.row  
+                .account__orders.col-12.col-lg-9
+                    h3.fw-normal.p-0.mb-3 TÀI KHOẢN
+                    table.account__orders-table.table.table-bordered 
+                        tr.text-center.bg-whitesmoke
+                            each header in orderTableRowHeaders
+                                th.fs-7.pe-3.ps-3(scope='col')= header 
+                        each row in orderTableRows 
+                            tr.text-center.fs-7
+                                td= row.order 
+                                td= row.date 
+                                td.text-indianred= row.paymentStatus
+                                td= row.total
+                                td= row.debt 
+                //- ACCOUNT INFO 
+                .account-info.col-12.col-lg-3 
+                    h5.fs-7.align-self-end.mt-2.pb-2 CHI TIẾT TÀI KHOẢN
+                    ul.ps-0.mt-3.fs-7   
+                        li.d-flex.gap-3.align-items-start 
+                            img(src=`${pagesAssetSrc}/icons/person-black.svg`, alt="Person")
+                            div
+                                h5.m-0.fs-6.fw-normal GiangLe 
+                                p Leanhgiang89@gmail.com
+                        li.d-flex.gap-3.align-items-start 
+                            img(src=`${pagesAssetSrc}/icons/marker-black.svg`, alt="Marker")
+                            p Tòa nhà Hà Nội group 442 Đội Cấn, Ba Đình, Hà Nội
+                        li.d-flex.gap-3.align-items-start 
+                            img(src=`${pagesAssetSrc}/icons/phone-black.svg`, alt="Phone") 
+                            p (04) 37868904
